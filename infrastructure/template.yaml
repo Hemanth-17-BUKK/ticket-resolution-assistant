@@ -1,0 +1,180 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: Ticket Resolution Assistant
+
+Resources:
+
+  TicketQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ticket-queue
+
+  TicketsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: tickets
+      BillingMode: PAY_PER_REQUEST
+
+      AttributeDefinitions:
+        - AttributeName: ticketId
+          AttributeType: S
+
+      KeySchema:
+        - AttributeName: ticketId
+          KeyType: HASH
+
+  AttachmentsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${AWS::StackName}-attachments'
+
+  TicketProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-ticket-processor'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/processor-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          TICKETS_TABLE: !Ref TicketsTable
+
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketsTable
+
+      Events:
+        TicketQueueEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt TicketQueue.Arn
+            BatchSize: 1
+
+  TicketIngestionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-ticket-ingestion'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/ingestion-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref TicketQueue
+          ATTACHMENTS_BUCKET: !Ref AttachmentsBucket
+
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt TicketQueue.QueueName
+
+        - S3CrudPolicy:
+            BucketName: !Ref AttachmentsBucket
+
+      Events:
+        CreateTicket:
+          Type: Api
+          Properties:
+            Path: /tickets
+            Method: post
+
+  SesIngestionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-ses-ingestion'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/ses-ingestion-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref TicketQueue
+          ATTACHMENTS_BUCKET: !Ref AttachmentsBucket
+
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt TicketQueue.QueueName
+
+        - S3CrudPolicy:
+            BucketName: !Ref AttachmentsBucket
+      Events:
+        MockEmailApi:
+          Type: Api
+          Properties:
+            Path: /email
+            Method: post
+  TicketQueryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-ticket-query'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/query-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          TICKETS_TABLE: !Ref TicketsTable
+          ATTACHMENTS_BUCKET: !Ref AttachmentsBucket
+
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketsTable
+        - S3ReadPolicy:
+            BucketName: !Ref AttachmentsBucket
+
+      Events:
+
+        GetTicket:
+          Type: Api
+          Properties:
+            Path: /tickets/{ticketId}
+            Method: get
+
+        GetAllTickets:
+          Type: Api
+          Properties:
+            Path: /tickets
+            Method: get
+
+        UpdateTicket:
+          Type: Api
+          Properties:
+            Path: /tickets/{ticketId}
+            Method: put
+
+        DeleteTicket:
+          Type: Api
+          Properties:
+            Path: /tickets/{ticketId}
+            Method: delete
+
+Outputs:
+
+  ApiGatewayEndpoint:
+    Description: API Gateway Endpoint
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tickets'
+
+  QueueUrl:
+    Description: SQS Queue URL
+    Value: !Ref TicketQueue
+
+  DynamoDBTable:
+    Description: DynamoDB Tickets Table
+    Value: !Ref TicketsTable
+
+  AttachmentsBucket:
+    Description: S3 Attachments Bucket
+    Value: !Ref AttachmentsBucket
