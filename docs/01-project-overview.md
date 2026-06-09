@@ -4,7 +4,7 @@
 
 The Ticket Resolution Assistant is a cloud-native serverless application built on AWS.
 
-The system allows customers to raise support tickets through multiple channels such as:
+The system allows customers to raise support tickets through multiple channels such as:-
 
 * Web Portal
 * Email
