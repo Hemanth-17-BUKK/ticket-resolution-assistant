@@ -1,0 +1,12 @@
+Refund Policy
+
+Customers are eligible for a refund if they were charged incorrectly, charged multiple times, or experienced a failed service after payment.
+
+Refund requests must include:
+- Customer ID
+- Transaction reference
+- Description of the issue
+
+Refunds are typically processed within 5-7 business days after approval.
+
+If duplicate charges are detected, the duplicate transaction will be refunded automatically after verification.

@@ -1,0 +1,10 @@
+Billing FAQ
+
+Q: Why was I charged twice?
+A: Duplicate charges can occur due to payment retries or banking delays. Our support team will verify the transactions and process a refund if necessary.
+
+Q: How can I request an invoice?
+A: Customers can request invoices by contacting support and providing their transaction ID.
+
+Q: How long do refunds take?
+A: Refunds usually take 5-7 business days.

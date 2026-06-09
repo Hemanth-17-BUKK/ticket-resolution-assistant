@@ -10,24 +10,92 @@ Resources:
     Properties:
       QueueName: ticket-queue
 
+  AIQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ai-queue
+
   TicketsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: tickets
+
       BillingMode: PAY_PER_REQUEST
 
       AttributeDefinitions:
         - AttributeName: ticketId
           AttributeType: S
 
+        - AttributeName: status
+          AttributeType: S
+
+        - AttributeName: priority
+          AttributeType: S
+
+        - AttributeName: assignedTeam
+          AttributeType: S
+
       KeySchema:
         - AttributeName: ticketId
           KeyType: HASH
+
+      GlobalSecondaryIndexes:
+        - IndexName: status-index
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+        - IndexName: priority-index
+          KeySchema:
+            - AttributeName: priority
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+        - IndexName: assigned-team-index
+          KeySchema:
+            - AttributeName: assignedTeam
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+  TicketHistoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ticket-history
+
+      BillingMode: PAY_PER_REQUEST
+
+      AttributeDefinitions:
+        - AttributeName: historyId
+          AttributeType: S
+
+        - AttributeName: ticketId
+          AttributeType: S
+
+      KeySchema:
+        - AttributeName: historyId
+          KeyType: HASH
+
+      GlobalSecondaryIndexes:
+        - IndexName: ticket-id-index
+          KeySchema:
+            - AttributeName: ticketId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
 
   AttachmentsBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub '${AWS::StackName}-attachments'
+
+  KnowledgeBaseBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${AWS::StackName}-knowledge-base'
 
   TicketProcessorFunction:
     Type: AWS::Serverless::Function
@@ -43,16 +111,63 @@ Resources:
       Environment:
         Variables:
           TICKETS_TABLE: !Ref TicketsTable
+          HISTORY_TABLE: !Ref TicketHistoryTable
+          AI_QUEUE_URL: !Ref AIQueue
 
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref TicketsTable
+
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketHistoryTable
+
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt AIQueue.QueueName
 
       Events:
         TicketQueueEvent:
           Type: SQS
           Properties:
             Queue: !GetAtt TicketQueue.Arn
+            BatchSize: 1
+
+  AIProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-ai-processor'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/ai-processor-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          TICKETS_TABLE: !Ref TicketsTable
+          KNOWLEDGE_BASE_ID: F1NKA6WUFL
+          MODEL_ID: amazon.nova-lite-v1:0
+
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketsTable
+
+        - S3ReadPolicy:
+            BucketName: !Ref KnowledgeBaseBucket
+        
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:Retrieve
+                - bedrock:RetrieveAndGenerate
+                - bedrock:InvokeModel
+              Resource: "*"
+
+      Events:
+        AIQueueEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt AIQueue.Arn
             BatchSize: 1
 
   TicketIngestionFunction:
@@ -107,12 +222,14 @@ Resources:
 
         - S3CrudPolicy:
             BucketName: !Ref AttachmentsBucket
+
       Events:
         MockEmailApi:
           Type: Api
           Properties:
             Path: /email
             Method: post
+
   TicketQueryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -127,16 +244,20 @@ Resources:
       Environment:
         Variables:
           TICKETS_TABLE: !Ref TicketsTable
+          HISTORY_TABLE: !Ref TicketHistoryTable
           ATTACHMENTS_BUCKET: !Ref AttachmentsBucket
 
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref TicketsTable
+
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketHistoryTable
+
         - S3ReadPolicy:
             BucketName: !Ref AttachmentsBucket
 
       Events:
-
         GetTicket:
           Type: Api
           Properties:
@@ -171,10 +292,22 @@ Outputs:
     Description: SQS Queue URL
     Value: !Ref TicketQueue
 
+  AIQueueUrl:
+    Description: AI Queue URL
+    Value: !Ref AIQueue
+
   DynamoDBTable:
     Description: DynamoDB Tickets Table
     Value: !Ref TicketsTable
 
+  TicketHistoryTable:
+    Description: Ticket History Table
+    Value: !Ref TicketHistoryTable
+
   AttachmentsBucket:
     Description: S3 Attachments Bucket
     Value: !Ref AttachmentsBucket
+
+  KnowledgeBaseBucket:
+    Description: Knowledge Base Bucket
+    Value: !Ref KnowledgeBaseBucket

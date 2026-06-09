@@ -1,0 +1,15 @@
+General Support Policy
+
+Support Hours:
+Monday-Friday
+09:00 AM - 06:00 PM UTC
+
+Priority Levels:
+HIGH
+Issues affecting payments, transactions, or service availability.
+
+MEDIUM
+Authentication issues and account access problems.
+
+LOW
+General inquiries and information requests.

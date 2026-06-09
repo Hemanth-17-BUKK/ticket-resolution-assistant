@@ -1,14 +1,23 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+
 const {
     DynamoDBDocumentClient,
     GetCommand,
+    PutCommand,
     ScanCommand,
+    QueryCommand,
     UpdateCommand,
     DeleteCommand
 } = require("@aws-sdk/lib-dynamodb");
 
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const {
+    S3Client,
+    GetObjectCommand
+} = require("@aws-sdk/client-s3");
+
+const {
+    getSignedUrl
+} = require("@aws-sdk/s3-request-presigner");
 
 const dynamoClient = new DynamoDBClient({});
 const dynamoDB = DynamoDBDocumentClient.from(dynamoClient);
@@ -20,11 +29,12 @@ exports.handler = async (event) => {
     try {
 
         const method = event.httpMethod;
+
         const ticketId = event.pathParameters?.ticketId;
 
-        // =====================================
+        // ==========================================
         // GET /tickets/{ticketId}
-        // =====================================
+        // ==========================================
         if (method === "GET" && ticketId) {
 
             const result = await dynamoDB.send(
@@ -37,6 +47,7 @@ exports.handler = async (event) => {
             );
 
             if (!result.Item) {
+
                 return {
                     statusCode: 404,
                     body: JSON.stringify({
@@ -47,20 +58,21 @@ exports.handler = async (event) => {
 
             const ticket = result.Item;
 
-            if (ticket.attachments && ticket.attachments.length > 0) {
+            if (ticket.attachments?.length) {
 
                 for (const attachment of ticket.attachments) {
 
-                    attachment.downloadUrl = await getSignedUrl(
-                        s3Client,
-                        new GetObjectCommand({
-                            Bucket: process.env.ATTACHMENTS_BUCKET,
-                            Key: attachment.s3Key
-                        }),
-                        {
-                            expiresIn: 3600
-                        }
-                    );
+                    attachment.downloadUrl =
+                        await getSignedUrl(
+                            s3Client,
+                            new GetObjectCommand({
+                                Bucket: process.env.ATTACHMENTS_BUCKET,
+                                Key: attachment.s3Key
+                            }),
+                            {
+                                expiresIn: 3600
+                            }
+                        );
                 }
             }
 
@@ -70,11 +82,83 @@ exports.handler = async (event) => {
             };
         }
 
-        // =====================================
+        // ==========================================
         // GET /tickets
-        // =====================================
+        // ==========================================
         if (method === "GET") {
 
+            const queryParams =
+                event.queryStringParameters || {};
+
+            // Query by Status
+            if (queryParams.status) {
+
+                const result = await dynamoDB.send(
+                    new QueryCommand({
+                        TableName: process.env.TICKETS_TABLE,
+                        IndexName: "status-index",
+                        KeyConditionExpression:
+                            "#status = :status",
+                        ExpressionAttributeNames: {
+                            "#status": "status"
+                        },
+                        ExpressionAttributeValues: {
+                            ":status": queryParams.status
+                        }
+                    })
+                );
+
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify(result.Items)
+                };
+            }
+
+            // Query by Priority
+            if (queryParams.priority) {
+
+                const result = await dynamoDB.send(
+                    new QueryCommand({
+                        TableName: process.env.TICKETS_TABLE,
+                        IndexName: "priority-index",
+                        KeyConditionExpression:
+                            "priority = :priority",
+                        ExpressionAttributeValues: {
+                            ":priority":
+                                queryParams.priority
+                        }
+                    })
+                );
+
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify(result.Items)
+                };
+            }
+
+            // Query by Team
+            if (queryParams.assignedTeam) {
+
+                const result = await dynamoDB.send(
+                    new QueryCommand({
+                        TableName: process.env.TICKETS_TABLE,
+                        IndexName: "assigned-team-index",
+                        KeyConditionExpression:
+                            "assignedTeam = :team",
+                        ExpressionAttributeValues: {
+                            ":team":
+                                queryParams.assignedTeam
+                        }
+                    })
+                );
+
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify(result.Items)
+                };
+            }
+
+            // Get All Tickets
             const result = await dynamoDB.send(
                 new ScanCommand({
                     TableName: process.env.TICKETS_TABLE
@@ -87,36 +171,118 @@ exports.handler = async (event) => {
             };
         }
 
-        // =====================================
+        // ==========================================
         // PUT /tickets/{ticketId}
-        // =====================================
+        // ==========================================
         if (method === "PUT" && ticketId) {
 
-            const requestBody = event.body
-                ? JSON.parse(event.body)
-                : {};
+            const requestBody = JSON.parse(event.body);
 
-            if (!requestBody.status) {
+            // Get existing ticket
+            const existingTicket = await dynamoDB.send(
+                new GetCommand({
+                    TableName: process.env.TICKETS_TABLE,
+                    Key: {
+                        ticketId: ticketId
+                    }
+                })
+            );
+
+            if (!existingTicket.Item) {
+
                 return {
-                    statusCode: 400,
+                    statusCode: 404,
                     body: JSON.stringify({
-                        message: "status is required"
+                        message: "Ticket not found"
                     })
                 };
+            }
+
+            const updateExpressionParts = [
+                "#status = :status",
+                "updatedAt = :updatedAt"
+            ];
+
+            const expressionAttributeNames = {
+                "#status": "status"
+            };
+
+            const expressionAttributeValues = {
+                ":status": requestBody.status,
+                ":updatedAt": new Date().toISOString()
+            };
+
+            if (requestBody.assignedAgent) {
+
+                updateExpressionParts.push(
+                    "assignedAgent = :assignedAgent"
+                );
+
+                expressionAttributeValues[
+                    ":assignedAgent"
+                ] = requestBody.assignedAgent;
+            }
+
+            if (requestBody.resolution) {
+
+                updateExpressionParts.push(
+                    "resolution = :resolution"
+                );
+
+                expressionAttributeValues[
+                    ":resolution"
+                ] = requestBody.resolution;
+            }
+
+            if (requestBody.status === "RESOLVED") {
+
+                updateExpressionParts.push(
+                    "resolvedAt = :resolvedAt"
+                );
+
+                expressionAttributeValues[
+                    ":resolvedAt"
+                ] = new Date().toISOString();
             }
 
             await dynamoDB.send(
                 new UpdateCommand({
                     TableName: process.env.TICKETS_TABLE,
+
                     Key: {
                         ticketId: ticketId
                     },
-                    UpdateExpression: "SET #status = :status",
-                    ExpressionAttributeNames: {
-                        "#status": "status"
-                    },
-                    ExpressionAttributeValues: {
-                        ":status": requestBody.status
+
+                    UpdateExpression:
+                        `SET ${updateExpressionParts.join(", ")}`,
+
+                    ExpressionAttributeNames:
+                        expressionAttributeNames,
+
+                    ExpressionAttributeValues:
+                        expressionAttributeValues
+                })
+            );
+
+            // Save History Snapshot
+            await dynamoDB.send(
+                new PutCommand({
+                    TableName: process.env.HISTORY_TABLE,
+
+                    Item: {
+                        historyId:
+                            `HIST-${Date.now()}`,
+
+                        ticketId: ticketId,
+
+                        subject:
+                            existingTicket.Item.subject,
+
+                        status:
+                            requestBody.status,
+
+                        timestamp:
+                            new Date().toISOString()
                     }
                 })
             );
@@ -124,14 +290,15 @@ exports.handler = async (event) => {
             return {
                 statusCode: 200,
                 body: JSON.stringify({
-                    message: "Ticket updated successfully"
+                    message:
+                        "Ticket updated successfully"
                 })
             };
         }
 
-        // =====================================
+        // ==========================================
         // DELETE /tickets/{ticketId}
-        // =====================================
+        // ==========================================
         if (method === "DELETE" && ticketId) {
 
             await dynamoDB.send(
@@ -146,7 +313,8 @@ exports.handler = async (event) => {
             return {
                 statusCode: 200,
                 body: JSON.stringify({
-                    message: "Ticket deleted successfully"
+                    message:
+                        "Ticket deleted successfully"
                 })
             };
         }
@@ -154,18 +322,21 @@ exports.handler = async (event) => {
         return {
             statusCode: 400,
             body: JSON.stringify({
-                message: "Unsupported operation"
+                message:
+                    "Unsupported operation"
             })
         };
 
     } catch (error) {
 
-        console.error("ERROR:", error);
+        console.error(error);
 
         return {
             statusCode: 500,
             body: JSON.stringify({
-                message: "Internal Server Error"
+                message:
+                    "Internal Server Error",
+                error: error.message
             })
         };
     }
