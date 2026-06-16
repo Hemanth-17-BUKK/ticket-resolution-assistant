@@ -1,0 +1,11 @@
+{
+  "name": "tool-executor-service",
+  "version": "1.0.0",
+  "main": "src/handler.js",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1064.0",
+    "@aws-sdk/lib-dynamodb": "^3.1064.0",
+    "@aws-sdk/client-sns": "^3.1064.0"
+  }
+}

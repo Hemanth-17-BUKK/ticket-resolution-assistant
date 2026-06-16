@@ -15,6 +15,18 @@ Resources:
     Properties:
       QueueName: ai-queue
 
+  ApprovalTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: approval-topic-v2
+
+  ApprovalEmailSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      Endpoint: yagateelaharshith@gmail.com
+      TopicArn: !Ref ApprovalTopic
+
   TicketsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -138,6 +150,8 @@ Resources:
 
       Runtime: nodejs20.x
 
+      Timeout: 30
+
       CodeUri: ../backend/ai-processor-service/
 
       Handler: src/handler.handler
@@ -145,8 +159,11 @@ Resources:
       Environment:
         Variables:
           TICKETS_TABLE: !Ref TicketsTable
-          KNOWLEDGE_BASE_ID: F1NKA6WUFL
+          KNOWLEDGE_BASE_ID: YIKFHMTQIK
           MODEL_ID: amazon.nova-lite-v1:0
+          TOOL_EXECUTOR_FUNCTION: !Ref ToolExecutorFunction
+          AGENT_ID: JG8U2S0WKN
+          AGENT_ALIAS_ID: TSTALIASID
 
       Policies:
         - DynamoDBCrudPolicy:
@@ -154,13 +171,28 @@ Resources:
 
         - S3ReadPolicy:
             BucketName: !Ref KnowledgeBaseBucket
-        
+
+        - S3ReadPolicy:
+            BucketName: !Ref AttachmentsBucket
+
         - Statement:
             - Effect: Allow
               Action:
                 - bedrock:Retrieve
                 - bedrock:RetrieveAndGenerate
                 - bedrock:InvokeModel
+              Resource: "*"
+
+        - Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !GetAtt ToolExecutorFunction.Arn
+
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeAgent
               Resource: "*"
 
       Events:
@@ -264,6 +296,18 @@ Resources:
             Path: /tickets/{ticketId}
             Method: get
 
+        GetDashboard:
+          Type: Api
+          Properties:
+            Path: /dashboard
+            Method: get
+
+        GetTicketHistory:
+          Type: Api
+          Properties:
+            Path: /tickets/{ticketId}/history
+            Method: get
+
         GetAllTickets:
           Type: Api
           Properties:
@@ -281,6 +325,78 @@ Resources:
           Properties:
             Path: /tickets/{ticketId}
             Method: delete
+
+  ToolExecutorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-tool-executor'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/tool-executor-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          TICKETS_TABLE: !Ref TicketsTable
+          HISTORY_TABLE: !Ref TicketHistoryTable
+          APPROVAL_TOPIC_ARN: !Ref ApprovalTopic
+          API_BASE_URL: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketsTable
+
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketHistoryTable
+
+        - SNSPublishMessagePolicy:
+            TopicName: approval-topic-v2
+
+  ApprovalHandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-approval-handler'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/approval-handler-service/
+
+      Handler: src/handler.handler
+
+      Environment:
+        Variables:
+          TICKETS_TABLE: !Ref TicketsTable
+          HISTORY_TABLE: !Ref TicketHistoryTable
+          MODEL_ID: amazon.nova-lite-v1:0
+
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketsTable
+
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TicketHistoryTable
+
+        - Statement:
+            - Effect: Allow
+              Action:
+                
+                 - bedrock:InvokeModel
+              Resource: "*"
+
+      Events:
+        ApproveTicket:
+          Type: Api
+          Properties:
+            Path: /approve/{ticketId}
+            Method: get
+
+        RejectTicket:
+          Type: Api
+          Properties:
+            Path: /reject/{ticketId}
+            Method: get
 
 Outputs:
 
@@ -311,3 +427,7 @@ Outputs:
   KnowledgeBaseBucket:
     Description: Knowledge Base Bucket
     Value: !Ref KnowledgeBaseBucket
+
+  ApprovalTopicArn:
+    Description: SNS Approval Topic ARN
+    Value: !Ref ApprovalTopic

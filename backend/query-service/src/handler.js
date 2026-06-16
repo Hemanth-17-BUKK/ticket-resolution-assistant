@@ -33,6 +33,169 @@ exports.handler = async (event) => {
         const ticketId = event.pathParameters?.ticketId;
 
         // ==========================================
+        // GET /tickets/{ticketId}/history
+        // ==========================================
+
+        if (
+            method === "GET" &&
+            ticketId &&
+            event.resource ===
+                "/tickets/{ticketId}/history"
+        ) {
+
+            const result =
+                await dynamoDB.send(
+                    new QueryCommand({
+
+                        TableName:
+                            process.env.HISTORY_TABLE,
+
+                        IndexName:
+                            "ticket-id-index",
+
+                        KeyConditionExpression:
+                            "ticketId = :ticketId",
+
+                        ExpressionAttributeValues: {
+                            ":ticketId":
+                                ticketId
+                        }
+                    })
+                );
+
+            const history =
+                (result.Items || [])
+                    .sort(
+                        (a, b) =>
+                            b.timestamp.localeCompare(
+                                a.timestamp
+                            )
+                    );
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify(history)
+            };
+        }
+
+        // ==========================================
+        // GET /dashboard
+        // ==========================================
+
+        if (
+            method === "GET" &&
+            event.resource === "/dashboard"
+        ) {
+
+            const result =
+                await dynamoDB.send(
+                    new ScanCommand({
+                        TableName:
+                            process.env.TICKETS_TABLE
+                    })
+                );
+
+            const tickets =
+                result.Items || [];
+
+            const dashboard = {
+
+                totalTickets:
+                    tickets.length,
+
+                openTickets: 0,
+
+                pendingApprovalTickets: 0,
+
+                resolvedTickets: 0,
+
+                rejectedTickets: 0,
+
+                highPriorityTickets: 0,
+
+                mediumPriorityTickets: 0,
+
+                lowPriorityTickets: 0,
+
+                paymentTickets: 0,
+
+                authenticationTickets: 0,
+
+                technicalTickets: 0,
+
+                shippingTickets: 0,
+
+                generalTickets: 0
+            };
+
+            for (const ticket of tickets) {
+
+                switch (ticket.status) {
+
+                    case "OPEN":
+                        dashboard.openTickets++;
+                        break;
+
+                    case "PENDING_APPROVAL":
+                        dashboard.pendingApprovalTickets++;
+                        break;
+
+                    case "RESOLVED":
+                        dashboard.resolvedTickets++;
+                        break;
+
+                    case "REJECTED":
+                        dashboard.rejectedTickets++;
+                        break;
+                }
+
+                switch (ticket.priority) {
+
+                    case "HIGH":
+                        dashboard.highPriorityTickets++;
+                        break;
+
+                    case "MEDIUM":
+                        dashboard.mediumPriorityTickets++;
+                        break;
+
+                    case "LOW":
+                        dashboard.lowPriorityTickets++;
+                        break;
+                }
+
+                switch (ticket.category) {
+
+                    case "PAYMENT":
+                        dashboard.paymentTickets++;
+                        break;
+
+                    case "AUTHENTICATION":
+                        dashboard.authenticationTickets++;
+                        break;
+
+                    case "TECHNICAL":
+                        dashboard.technicalTickets++;
+                        break;
+
+                    case "SHIPPING":
+                        dashboard.shippingTickets++;
+                        break;
+
+                    case "GENERAL":
+                        dashboard.generalTickets++;
+                        break;
+                }
+            }
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify(
+                    dashboard
+                )
+            };
+        }
+        // ==========================================
         // GET /tickets/{ticketId}
         // ==========================================
         if (method === "GET" && ticketId) {

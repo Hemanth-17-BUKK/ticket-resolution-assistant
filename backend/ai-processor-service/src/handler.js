@@ -1,6 +1,11 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
 const {
+    S3Client,
+    GetObjectCommand
+} = require("@aws-sdk/client-s3");
+
+const {
     DynamoDBDocumentClient,
     GetCommand,
     UpdateCommand
@@ -8,13 +13,17 @@ const {
 
 const {
     BedrockAgentRuntimeClient,
-    RetrieveCommand
-} = require("@aws-sdk/client-bedrock-agent-runtime");
+    RetrieveCommand,
+    InvokeAgentCommand
+} = require(
+    "@aws-sdk/client-bedrock-agent-runtime");
 
 const {
     BedrockRuntimeClient,
     ConverseCommand
 } = require("@aws-sdk/client-bedrock-runtime");
+
+const s3Client = new S3Client({});
 
 const dynamoClient = new DynamoDBClient({});
 
@@ -30,7 +39,19 @@ const bedrockRuntimeClient =
     new BedrockRuntimeClient({
         region: "us-east-1"
     });
+async function streamToString(stream) {
 
+    const chunks = [];
+
+    for await (const chunk of stream) {
+
+        chunks.push(chunk);
+    }
+
+    return Buffer
+        .concat(chunks)
+        .toString("utf-8");
+}
 exports.handler = async (event) => {
 
     try {
@@ -86,6 +107,58 @@ exports.handler = async (event) => {
                 JSON.stringify(ticket)
             );
 
+            let attachmentContext = "";
+
+            if (
+                ticket.attachments &&
+                ticket.attachments.length > 0
+            ) {
+
+                console.log(
+                    `Found ${ticket.attachments.length} attachment(s)`
+                );
+
+                for (const attachment of ticket.attachments) {
+
+                    try {
+
+                        const file =
+                            await s3Client.send(
+                                new GetObjectCommand({
+
+                                    Bucket:
+                                        process.env.ATTACHMENTS_BUCKET,
+
+                                    Key:
+                                        attachment.s3Key
+                                })
+                            );
+
+                        const content =
+                            await streamToString(
+                                file.Body
+                            );
+
+                        attachmentContext += `
+
+Attachment:
+${attachment.fileName}
+
+Content:
+${content}
+
+`;
+
+        } catch (error) {
+
+            console.error(
+                `Failed to read attachment ${attachment.fileName}`,
+                error
+            );
+        }
+    }
+}
+
             // =====================================
             // Retrieve Context From KB
             // =====================================
@@ -124,26 +197,55 @@ You are an AI customer support analyst.
 
 Use the knowledge base context to classify the ticket.
 
-Knowledge Base Context:
-${context}
+Analyze this customer support ticket.
 
-Ticket Subject:
+Ticket ID: ${ticket.ticketId}
+
+Subject:
 ${ticket.subject}
 
-Ticket Message:
+Message:
 ${ticket.message}
 
-Rules:
+Attachment Context:
+${attachmentContext}
 
-1. Payment, billing, refund, transaction issues => PAYMENT
+If a supported action is required,
+use the appropriate action group.
 
-2. Login, password, account access issues => AUTHENTICATION
+Initial Response Rules:
 
-3. Errors, bugs, crashes, technical failures => TECHNICAL
+Generate an acknowledgement message.
 
-4. Shipping, delivery, order tracking => SHIPPING
+The acknowledgement message must:
 
-5. Everything else => GENERAL
+- Confirm the ticket was received.
+- Inform the customer the request is under review.
+- Never solve the issue.
+- Never provide troubleshooting steps.
+- Never assume approval.
+- Never claim an action has been completed.
+- Keep it under 50 words.
+
+Category MUST be exactly one of:
+
+PAYMENT
+AUTHENTICATION
+TECHNICAL
+SHIPPING
+GENERAL
+
+Mapping:
+
+Payment, billing, refund, transaction issues => PAYMENT
+
+Login, password, account access issues => AUTHENTICATION
+
+Errors, bugs, crashes, technical failures => TECHNICAL
+
+Shipping, delivery, order tracking => SHIPPING
+
+Everything else => GENERAL
 
 Priority Rules:
 
@@ -156,13 +258,26 @@ Authentication issues.
 LOW:
 General inquiries.
 
+Tool Decision Rules:
+
+Return true if a support tool is required.
+
+Refund Request => true
+
+Refund Status => true
+
+Password Reset => true
+
+General Inquiry => false
+
 Return ONLY valid JSON.
 
 {
   "category": "",
   "priority": "",
   "sentiment": "",
-  "draftReply": ""
+  "draftReply": "",
+  "toolRequired": false
 }
 `;
 
@@ -263,6 +378,53 @@ Return ONLY valid JSON.
                     }
                 })
             );
+
+            if (aiResult.toolRequired) {
+
+                console.log(
+                    "Invoking Bedrock Agent..."
+                );
+
+                const agentPrompt = `
+            Ticket ID: ${ticket.ticketId}
+
+            Subject:
+            ${ticket.subject}
+
+            Message:
+            ${ticket.message}
+            `;
+
+                const agentResponse =
+                    await bedrockAgentClient.send(
+                        new InvokeAgentCommand({
+
+                            agentId:
+                                process.env.AGENT_ID,
+
+                            agentAliasId:
+                                process.env.AGENT_ALIAS_ID,
+
+                            sessionId:
+                                ticket.ticketId,
+
+                            inputText:
+                                agentPrompt
+                        })
+                    );
+
+                console.log(
+                    "Bedrock Agent Invoked Successfully"
+                );
+
+                console.log(
+                    JSON.stringify(
+                        agentResponse,
+                        null,
+                        2
+                    )
+                );
+            }
 
             console.log(
                 `AI processing completed for ${ticketId}`
