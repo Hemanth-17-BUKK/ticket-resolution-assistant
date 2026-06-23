@@ -32,6 +32,51 @@ exports.handler = async (event) => {
 
         const ticketId = event.pathParameters?.ticketId;
 
+
+        if (
+            event.httpMethod === "GET" &&
+            event.resource === "/my-tickets"
+        ) {
+
+            const customerEmail =
+                event.requestContext
+                    ?.authorizer
+                    ?.claims
+                    ?.email;
+
+            console.log(
+                "Customer Email:",
+                customerEmail
+            );
+
+            const result =
+                await dynamoDB.send(
+                    new QueryCommand({
+
+                        TableName:
+                            process.env.TICKETS_TABLE,
+
+                        IndexName:
+                            "email-index",
+
+                        KeyConditionExpression:
+                            "customerEmail = :email",
+
+                        ExpressionAttributeValues: {
+                            ":email":
+                                customerEmail
+                        }
+                    })
+                );
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify(
+                    result.Items
+                )
+            };
+        }
+
         // ==========================================
         // GET /tickets/{ticketId}/history
         // ==========================================
@@ -43,6 +88,23 @@ exports.handler = async (event) => {
                 "/tickets/{ticketId}/history"
         ) {
 
+            const claims =
+                event.requestContext
+                    ?.authorizer
+                    ?.claims;
+
+            const groups =
+                claims?.["cognito:groups"] || "";
+
+            if (!groups.includes("ADMIN")) {
+
+                return {
+                    statusCode: 403,
+                    body: JSON.stringify({
+                        message: "Access Denied"
+                    })
+                };
+            }
             const result =
                 await dynamoDB.send(
                     new QueryCommand({
@@ -86,6 +148,24 @@ exports.handler = async (event) => {
             method === "GET" &&
             event.resource === "/dashboard"
         ) {
+
+            const claims =
+                event.requestContext
+                    ?.authorizer
+                    ?.claims;
+
+            const groups =
+                claims?.["cognito:groups"] || "";
+
+            if (!groups.includes("ADMIN")) {
+
+                return {
+                    statusCode: 403,
+                    body: JSON.stringify({
+                        message: "Access Denied"
+                    })
+                };
+            }
 
             const result =
                 await dynamoDB.send(
@@ -249,6 +329,24 @@ exports.handler = async (event) => {
         // GET /tickets
         // ==========================================
         if (method === "GET") {
+
+            const claims =
+                event.requestContext
+                    ?.authorizer
+                    ?.claims;
+
+            const groups =
+                claims?.["cognito:groups"] || "";
+
+            if (!groups.includes("ADMIN")) {
+
+                return {
+                    statusCode: 403,
+                    body: JSON.stringify({
+                        message: "Access Denied"
+                    })
+                };
+            }
 
             const queryParams =
                 event.queryStringParameters || {};

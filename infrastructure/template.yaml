@@ -35,6 +35,10 @@ Resources:
       BillingMode: PAY_PER_REQUEST
 
       AttributeDefinitions:
+
+        - AttributeName: customerEmail
+          AttributeType: S
+
         - AttributeName: ticketId
           AttributeType: S
 
@@ -52,6 +56,14 @@ Resources:
           KeyType: HASH
 
       GlobalSecondaryIndexes:
+
+        - IndexName: email-index
+          KeySchema:
+            - AttributeName: customerEmail
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
         - IndexName: status-index
           KeySchema:
             - AttributeName: status
@@ -109,6 +121,20 @@ Resources:
     Properties:
       BucketName: !Sub '${AWS::StackName}-knowledge-base'
 
+  TicketApi:
+    Type: AWS::Serverless::Api
+    Properties:
+
+      StageName: Prod
+
+      Auth:
+
+        Authorizers:
+
+          CognitoAuthorizer:
+
+            UserPoolArn: arn:aws:cognito-idp:us-east-1:235951409983:userpool/us-east-1_tYDrYlJBf
+
   TicketProcessorFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -150,7 +176,9 @@ Resources:
 
       Runtime: nodejs20.x
 
-      Timeout: 30
+      MemorySize: 512
+
+      Timeout: 60
 
       CodeUri: ../backend/ai-processor-service/
 
@@ -164,6 +192,7 @@ Resources:
           TOOL_EXECUTOR_FUNCTION: !Ref ToolExecutorFunction
           AGENT_ID: JG8U2S0WKN
           AGENT_ALIAS_ID: TSTALIASID
+          ATTACHMENTS_BUCKET: !Ref AttachmentsBucket
 
       Policies:
         - DynamoDBCrudPolicy:
@@ -229,8 +258,11 @@ Resources:
         CreateTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets
             Method: post
+            Auth:
+              Authorizer: CognitoAuthorizer
 
   SesIngestionFunction:
     Type: AWS::Serverless::Function
@@ -259,6 +291,7 @@ Resources:
         MockEmailApi:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /email
             Method: post
 
@@ -290,41 +323,68 @@ Resources:
             BucketName: !Ref AttachmentsBucket
 
       Events:
+        MyTickets:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TicketApi
+            Path: /my-tickets
+            Method: get
+            Auth:
+              Authorizer: CognitoAuthorizer
+            
         GetTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets/{ticketId}
             Method: get
+            Auth:
+              Authorizer: CognitoAuthorizer
 
         GetDashboard:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /dashboard
             Method: get
+            Auth:
+              Authorizer: CognitoAuthorizer
 
         GetTicketHistory:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets/{ticketId}/history
             Method: get
+            Auth:
+              Authorizer: CognitoAuthorizer
 
         GetAllTickets:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets
             Method: get
+            Auth:
+              Authorizer: CognitoAuthorizer
 
         UpdateTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets/{ticketId}
             Method: put
+            Auth:
+              Authorizer: CognitoAuthorizer
 
         DeleteTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /tickets/{ticketId}
             Method: delete
+            Auth:
+              Authorizer: CognitoAuthorizer
 
   ToolExecutorFunction:
     Type: AWS::Serverless::Function
@@ -342,7 +402,7 @@ Resources:
           TICKETS_TABLE: !Ref TicketsTable
           HISTORY_TABLE: !Ref TicketHistoryTable
           APPROVAL_TOPIC_ARN: !Ref ApprovalTopic
-          API_BASE_URL: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+          API_BASE_URL: !Sub "https://${TicketApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
 
       Policies:
         - DynamoDBCrudPolicy:
@@ -389,20 +449,22 @@ Resources:
         ApproveTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /approve/{ticketId}
             Method: get
 
         RejectTicket:
           Type: Api
           Properties:
+            RestApiId: !Ref TicketApi
             Path: /reject/{ticketId}
             Method: get
 
 Outputs:
-
+  
   ApiGatewayEndpoint:
     Description: API Gateway Endpoint
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tickets'
+    Value: !Sub 'https://${TicketApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
 
   QueueUrl:
     Description: SQS Queue URL

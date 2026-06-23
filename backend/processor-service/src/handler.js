@@ -37,6 +37,9 @@ exports.handler = async (event) => {
             customerId:
                 `CUST-${uniqueId}`,
 
+            customerEmail:
+                ticket.customerEmail,
+
             subject:
                 ticket.subject,
 
@@ -58,6 +61,11 @@ exports.handler = async (event) => {
             updatedAt:
                 currentTimestamp
         };
+
+        console.log(
+            "Customer Email:",
+            ticket.customerEmail
+        );
 
         // =====================================
         // Store Ticket

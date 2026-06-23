@@ -11,6 +11,9 @@ const {
     UpdateCommand
 } = require("@aws-sdk/lib-dynamodb");
 
+const pdfParse =
+    require("pdf-parse");
+    
 const {
     BedrockAgentRuntimeClient,
     RetrieveCommand,
@@ -39,7 +42,7 @@ const bedrockRuntimeClient =
     new BedrockRuntimeClient({
         region: "us-east-1"
     });
-async function streamToString(stream) {
+async function streamToBuffer(stream) {
 
     const chunks = [];
 
@@ -48,9 +51,15 @@ async function streamToString(stream) {
         chunks.push(chunk);
     }
 
-    return Buffer
-        .concat(chunks)
-        .toString("utf-8");
+    return Buffer.concat(chunks);
+}
+
+async function streamToString(stream) {
+
+    const buffer =
+        await streamToBuffer(stream);
+
+    return buffer.toString("utf-8");
 }
 exports.handler = async (event) => {
 
@@ -109,55 +118,108 @@ exports.handler = async (event) => {
 
             let attachmentContext = "";
 
-            if (
-                ticket.attachments &&
-                ticket.attachments.length > 0
-            ) {
+if (
+    ticket.attachments &&
+    ticket.attachments.length > 0
+) {
 
-                console.log(
-                    `Found ${ticket.attachments.length} attachment(s)`
+    console.log(
+        `Found ${ticket.attachments.length} attachment(s)`
+    );
+
+    for (
+        const attachment
+        of ticket.attachments
+    ) {
+
+        try {
+
+            const fileName =
+                attachment.fileName
+                    .toLowerCase();
+
+            const object =
+                await s3Client.send(
+                    new GetObjectCommand({
+
+                        Bucket:
+                            process.env.ATTACHMENTS_BUCKET,
+
+                        Key:
+                            attachment.s3Key
+                    })
                 );
 
-                for (const attachment of ticket.attachments) {
+            // ==========================
+            // PDF Invoice
+            // ==========================
 
-                    try {
+            if (
+                fileName.endsWith(
+                    ".pdf"
+                )
+            ) {
 
-                        const file =
-                            await s3Client.send(
-                                new GetObjectCommand({
+                const pdfBuffer =
+                    await streamToBuffer(
+                        object.Body
+                    );
 
-                                    Bucket:
-                                        process.env.ATTACHMENTS_BUCKET,
+                const pdfData =
+                    await pdfParse(
+                        pdfBuffer
+                    );
 
-                                    Key:
-                                        attachment.s3Key
-                                })
-                            );
+                attachmentContext += `
 
-                        const content =
-                            await streamToString(
-                                file.Body
-                            );
+Invoice Attachment:
 
-                        attachmentContext += `
+${pdfData.text}
+
+`;
+            }
+
+            // ==========================
+            // Text Files
+            // ==========================
+
+            else if (
+
+                fileName.endsWith(".txt") ||
+                fileName.endsWith(".csv") ||
+                fileName.endsWith(".log") ||
+                fileName.endsWith(".json")
+
+            ) {
+
+                const content =
+                    await streamToString(
+                        object.Body
+                    );
+
+                attachmentContext += `
 
 Attachment:
-${attachment.fileName}
 
-Content:
 ${content}
 
 `;
+            }
 
         } catch (error) {
 
             console.error(
-                `Failed to read attachment ${attachment.fileName}`,
+                `Failed processing attachment ${attachment.fileName}`,
                 error
             );
         }
     }
 }
+
+console.log(
+    "Attachment Context:",
+    attachmentContext
+);
 
             // =====================================
             // Retrieve Context From KB
@@ -209,6 +271,18 @@ ${ticket.message}
 
 Attachment Context:
 ${attachmentContext}
+
+Use:
+1. Customer message
+2. Attachment content
+3. Knowledge base context
+
+when determining:
+
+- category
+- priority
+- sentiment
+- toolRequired
 
 If a supported action is required,
 use the appropriate action group.
@@ -380,7 +454,7 @@ Return ONLY valid JSON.
             );
 
             if (aiResult.toolRequired) {
-
+                status = "PROCESSING";
                 console.log(
                     "Invoking Bedrock Agent..."
                 );

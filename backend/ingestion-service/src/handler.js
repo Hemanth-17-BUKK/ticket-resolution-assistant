@@ -32,13 +32,39 @@ exports.handler = async (event) => {
             });
         }
     }
+    console.log(
+        "REQUEST CONTEXT:",
+        JSON.stringify(
+            event.requestContext,
+            null,
+            2
+        )
+    );
+    console.log(
+        "AUTHORIZER:",
+        JSON.stringify(
+            event.requestContext?.authorizer,
+            null,
+            2
+        )
+    );
+    const customerEmail =
+        event.requestContext
+            ?.authorizer
+            ?.claims
+            ?.email;
+
+            console.log(
+                "Customer Email:",
+                customerEmail
+            );
 
     const message = {
-        customerId: body.customerId,
+        customerEmail,
         subject: body.subject,
         message: body.message,
         source: "WEB",
-        attachments: attachments
+        attachments
     };
 
     await sqsClient.send(
