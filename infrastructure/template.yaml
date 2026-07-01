@@ -127,6 +127,11 @@ Resources:
 
       StageName: Prod
 
+      Cors:
+        AllowMethods: "'OPTIONS,GET,POST,PUT,DELETE'"
+        AllowHeaders: "'Content-Type,Authorization'"
+        AllowOrigin: "'*'" 
+
       Auth:
 
         Authorizers:
@@ -134,6 +139,26 @@ Resources:
           CognitoAuthorizer:
 
             UserPoolArn: arn:aws:cognito-idp:us-east-1:235951409983:userpool/us-east-1_tYDrYlJBf
+
+  PostConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+
+      FunctionName: !Sub '${AWS::StackName}-post-confirmation'
+
+      Runtime: nodejs20.x
+
+      CodeUri: ../backend/post-confirmation-service/
+
+      Handler: src/handler.handler
+
+      Policies:
+
+        - Statement:
+            Effect: Allow
+            Action:
+              - cognito-idp:AdminAddUserToGroup
+            Resource: "*"
 
   TicketProcessorFunction:
     Type: AWS::Serverless::Function
@@ -301,6 +326,8 @@ Resources:
       FunctionName: !Sub '${AWS::StackName}-ticket-query'
 
       Runtime: nodejs20.x
+
+      MemorySize: 512
 
       CodeUri: ../backend/query-service/
 

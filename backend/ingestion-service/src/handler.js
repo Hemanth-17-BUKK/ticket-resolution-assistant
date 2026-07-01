@@ -4,6 +4,18 @@ const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const sqsClient = new SQSClient({});
 const s3Client = new S3Client({});
 
+const corsHeaders = {
+
+    "Access-Control-Allow-Origin":
+        "http://localhost:5173",
+
+    "Access-Control-Allow-Headers":
+        "Content-Type,Authorization",
+
+    "Access-Control-Allow-Methods":
+        "GET,POST,PUT,DELETE,OPTIONS"
+};
+
 exports.handler = async (event) => {
 
     console.log("Incoming Request:", event);
@@ -76,6 +88,7 @@ exports.handler = async (event) => {
 
     return {
         statusCode: 201,
+        headers: corsHeaders,
         body: JSON.stringify({
             message: "Ticket submitted successfully"
         })

@@ -1,0 +1,29 @@
+.workspace-panel {
+
+    display: grid;
+
+    grid-template-rows:
+        auto
+        1fr;
+
+    gap: 16px;
+
+    height: 100%;
+
+    min-height: 0;
+
+}
+
+.workspace-content {
+
+    display: flex;
+
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    align-items: stretch;
+
+}

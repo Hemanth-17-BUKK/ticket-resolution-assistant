@@ -1,0 +1,412 @@
+.ticket-history {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+/* =========================================== */
+
+.ticket-history-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+
+    border-bottom: 2px solid #dbeafe;
+}
+
+/* =========================================== */
+
+.ticket-history-list {
+    flex: 1;
+
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 6px;
+}
+
+.ticket-history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ticket-history-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+.ticket-history-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* =========================================== */
+
+.ticket-history-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 170px;
+
+    border: 2px dashed #dbeafe;
+    border-radius: 16px;
+
+    background: #f8fbff;
+
+    color: #64748b;
+
+    font-weight: 600;
+}
+
+/* =========================================== */
+
+.ticket-history-card {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    padding: 16px;
+
+    border: 2px solid;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fbfdff
+        );
+
+    box-shadow:
+        0 4px 12px rgba(
+            15,
+            23,
+            42,
+            .05
+        );
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+/* ---------- Priority Borders ---------- */
+
+.ticket-history-card.low {
+    border-color: #93c5fd;
+}
+
+.ticket-history-card.medium {
+    border-color: #fdba74;
+}
+
+.ticket-history-card.high {
+    border-color: #fca5a5;
+}
+
+/* ---------- Hover ---------- */
+
+.ticket-history-card.low:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 14px 28px rgba(
+            37,
+            99,
+            235,
+            .12
+        );
+}
+
+.ticket-history-card.medium:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #d97706;
+
+    box-shadow:
+        0 14px 28px rgba(
+            217,
+            119,
+            6,
+            .12
+        );
+}
+
+.ticket-history-card.high:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #dc2626;
+
+    box-shadow:
+        0 14px 28px rgba(
+            220,
+            38,
+            38,
+            .12
+        );
+}
+
+/* =========================================== */
+
+.ticket-history-id {
+
+    width: fit-content;
+
+    padding: 5px 11px;
+
+    border-radius: 999px;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+
+    user-select: none;
+}
+
+.ticket-history-id.low {
+    background: #2563eb;
+}
+
+.ticket-history-id.medium {
+    background: #d97706;
+}
+
+.ticket-history-id.high {
+    background: #dc2626;
+}
+
+/* =========================================== */
+
+.ticket-history-subject-box {
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    background: #fafdff;
+
+    border: 1px solid #d6e9ff;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.ticket-history-card:hover .ticket-history-subject-box {
+
+    background: #f2f8ff;
+
+    border-color: #93c5fd;
+}
+
+/* =========================================== */
+
+.ticket-history-subject {
+
+    font-family:
+        "Segoe UI",
+        "Inter",
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    line-height: 1.6;
+
+    letter-spacing: -.2px;
+
+    color: #0f172a;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+/* =========================================== */
+
+.ticket-history-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.ticket-history-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-left: auto;
+}
+
+/* =========================================== */
+
+.ticket-history-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 126px;
+
+    height: 30px;
+
+    padding: 0 14px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    border: 1px solid transparent;
+}
+
+.ticket-history-status.OPEN {
+    color: #1d4ed8;
+    background: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.ticket-history-status.PENDING_APPROVAL {
+    color: #b45309;
+    background: #fef3c7;
+    border-color: #fcd34d;
+}
+
+.ticket-history-status.RESOLVED {
+    color: #15803d;
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+.ticket-history-status.REJECTED {
+    color: #b91c1c;
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* =========================================== */
+
+.ticket-history-date {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.ticket-history-card:hover .ticket-history-date {
+
+    background: #eff6ff;
+
+    border-color: #bfdbfe;
+}
+
+/* =========================================== */
+
+.ticket-history-arrow {
+
+    color: #94a3b8;
+
+    flex-shrink: 0;
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+.ticket-history-card:hover .ticket-history-arrow {
+
+    color: #2563eb;
+
+    transform: translateX(5px);
+}
+
+/* =========================================== */
+
+.ticket-history-card:active {
+
+    transform: scale(.99);
+}
+
+/* =========================================== */
+
+@media (max-width: 992px) {
+
+    .ticket-history-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .ticket-history-right {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+        margin-left: 0;
+    }
+}

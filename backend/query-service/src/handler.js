@@ -24,6 +24,40 @@ const dynamoDB = DynamoDBDocumentClient.from(dynamoClient);
 
 const s3Client = new S3Client({});
 
+const corsHeaders = {
+
+    "Access-Control-Allow-Origin":
+        "http://localhost:5173",
+
+    "Access-Control-Allow-Headers":
+        "Content-Type,Authorization",
+
+    "Access-Control-Allow-Methods":
+        "GET,POST,PUT,DELETE,OPTIONS"
+};
+
+
+const successResponse = (statusCode, body) => {
+
+    return {
+        statusCode,
+        headers: corsHeaders,
+        body: JSON.stringify(body)
+    };
+};
+
+const errorResponse = (statusCode, message) => {
+
+    return {
+        statusCode,
+        headers: corsHeaders,
+        body: JSON.stringify({
+            message
+        })
+    };
+};
+
+
 exports.handler = async (event) => {
 
     try {
@@ -69,12 +103,10 @@ exports.handler = async (event) => {
                     })
                 );
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify(
-                    result.Items
-                )
-            };
+            return successResponse(
+                200,
+                result.Items
+            );
         }
 
         // ==========================================
@@ -98,12 +130,10 @@ exports.handler = async (event) => {
 
             if (!groups.includes("ADMIN")) {
 
-                return {
-                    statusCode: 403,
-                    body: JSON.stringify({
-                        message: "Access Denied"
-                    })
-                };
+                return errorResponse(
+                    403,
+                    "Access Denied"
+                );
             }
             const result =
                 await dynamoDB.send(
@@ -134,10 +164,10 @@ exports.handler = async (event) => {
                             )
                     );
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify(history)
-            };
+            return successResponse(
+                200,
+                history
+            );
         }
 
         // ==========================================
@@ -159,12 +189,10 @@ exports.handler = async (event) => {
 
             if (!groups.includes("ADMIN")) {
 
-                return {
-                    statusCode: 403,
-                    body: JSON.stringify({
-                        message: "Access Denied"
-                    })
-                };
+                return errorResponse(
+                    403,
+                    "Access Denied"
+                );
             }
 
             const result =
@@ -268,12 +296,10 @@ exports.handler = async (event) => {
                 }
             }
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify(
-                    dashboard
-                )
-            };
+            return successResponse(
+                200,
+                dashboard
+            );
         }
         // ==========================================
         // GET /tickets/{ticketId}
@@ -291,12 +317,10 @@ exports.handler = async (event) => {
 
             if (!result.Item) {
 
-                return {
-                    statusCode: 404,
-                    body: JSON.stringify({
-                        message: "Ticket not found"
-                    })
-                };
+                return errorResponse(
+                    404,
+                    "Ticket not found"
+                );
             }
 
             const ticket = result.Item;
@@ -319,10 +343,10 @@ exports.handler = async (event) => {
                 }
             }
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify(ticket)
-            };
+            return successResponse(
+                200,
+                ticket
+            );
         }
 
         // ==========================================
@@ -340,12 +364,10 @@ exports.handler = async (event) => {
 
             if (!groups.includes("ADMIN")) {
 
-                return {
-                    statusCode: 403,
-                    body: JSON.stringify({
-                        message: "Access Denied"
-                    })
-                };
+                return errorResponse(
+                    403,
+                    "Access Denied"
+                );
             }
 
             const queryParams =
@@ -369,10 +391,10 @@ exports.handler = async (event) => {
                     })
                 );
 
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify(result.Items)
-                };
+                return successResponse(
+                    200,
+                    result.Items
+                );
             }
 
             // Query by Priority
@@ -391,10 +413,10 @@ exports.handler = async (event) => {
                     })
                 );
 
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify(result.Items)
-                };
+                return successResponse(
+                    200,
+                    result.Items
+                );
             }
 
             // Query by Team
@@ -413,10 +435,10 @@ exports.handler = async (event) => {
                     })
                 );
 
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify(result.Items)
-                };
+                return successResponse(
+                    200,
+                    result.Items
+                );
             }
 
             // Get All Tickets
@@ -426,10 +448,10 @@ exports.handler = async (event) => {
                 })
             );
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify(result.Items)
-            };
+            return successResponse(
+                200,
+                result.Items
+            );
         }
 
         // ==========================================
@@ -451,12 +473,10 @@ exports.handler = async (event) => {
 
             if (!existingTicket.Item) {
 
-                return {
-                    statusCode: 404,
-                    body: JSON.stringify({
-                        message: "Ticket not found"
-                    })
-                };
+                return errorResponse(
+                    404,
+                    "Ticket not found"
+                );
             }
 
             const updateExpressionParts = [
@@ -548,13 +568,13 @@ exports.handler = async (event) => {
                 })
             );
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
+            return successResponse(
+                200,
+                {
                     message:
                         "Ticket updated successfully"
-                })
-            };
+                }
+            );
         }
 
         // ==========================================
@@ -571,22 +591,19 @@ exports.handler = async (event) => {
                 })
             );
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
+            return successResponse(
+                200,
+                {
                     message:
                         "Ticket deleted successfully"
-                })
-            };
+                }
+            );
         }
 
-        return {
-            statusCode: 400,
-            body: JSON.stringify({
-                message:
-                    "Unsupported operation"
-            })
-        };
+        return errorResponse(
+            400,
+            "Unsupported operation"
+        );
 
     } catch (error) {
 
@@ -594,6 +611,7 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 500,
+            headers: corsHeaders,
             body: JSON.stringify({
                 message:
                     "Internal Server Error",

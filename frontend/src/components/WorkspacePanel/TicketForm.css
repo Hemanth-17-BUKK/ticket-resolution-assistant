@@ -1,0 +1,384 @@
+/* ==========================================================
+   TICKET FORM
+========================================================== */
+
+.ticket-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    flex: 1;
+
+    width: 100%;
+
+    max-width: none;
+
+    padding: 22px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #fbfdff
+    );
+
+    border: 2px solid #dbeafe;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 6px 18px rgba(15,23,42,.05);
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.ticket-form-title {
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: #0f172a;
+
+    padding-bottom: 8px;
+
+    border-bottom: 2px solid #dbeafe;
+
+    letter-spacing: -.3px;
+
+}
+
+/* ==========================================================
+   ALERTS
+========================================================== */
+
+.ticket-form-success,
+.ticket-form-error {
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+.ticket-form-success {
+
+    background: #ecfdf5;
+
+    border: 1px solid #86efac;
+
+    color: #166534;
+
+}
+
+.ticket-form-error {
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+}
+
+/* ==========================================================
+   FIELD
+========================================================== */
+
+.ticket-form-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+.ticket-form-field label:first-child {
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #64748b;
+
+}
+
+/* ==========================================================
+   INPUT
+========================================================== */
+
+.ticket-form-field input,
+.ticket-form-field textarea {
+
+    width: 100%;
+
+    border: 2px solid #dbeafe;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-family:
+        "Segoe UI",
+        "Inter",
+        sans-serif;
+
+    font-size: 14px;
+
+    color: #0f172a;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+}
+
+.ticket-form-field input {
+
+    height: 42px;
+
+    padding: 0 14px;
+
+}
+
+.ticket-form-field textarea {
+
+    resize: none;
+
+    height: 78px;
+
+    padding: 12px 14px;
+
+    line-height: 1.55;
+
+}
+
+.ticket-form-field input:hover,
+.ticket-form-field textarea:hover {
+
+    border-color: #93c5fd;
+
+}
+
+.ticket-form-field input:focus,
+.ticket-form-field textarea:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+/* ==========================================================
+   UPLOAD
+========================================================== */
+
+.ticket-form-upload-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+.ticket-form-upload-button {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 38px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #bfdbfe;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.ticket-form-upload-button:hover {
+
+    background: #dbeafe;
+
+    border-color: #93c5fd;
+
+}
+
+.ticket-form-upload-info {
+
+    font-size: 11px;
+
+    color: #64748b;
+
+}
+
+/* ==========================================================
+   FILES
+========================================================== */
+
+.ticket-form-files {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+}
+
+.ticket-form-chip {
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    border: 1px solid #bfdbfe;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    max-width: 160px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+}
+
+/* ==========================================================
+   ACTIONS
+========================================================== */
+
+.ticket-form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: auto;
+
+    padding-top: 4px;
+
+}
+
+/* ==========================================================
+   SUBMIT
+========================================================== */
+
+.ticket-form-submit {
+
+    min-width: 150px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #d45a5a;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        transform .2s ease,
+        box-shadow .25s ease;
+
+}
+
+.ticket-form-submit:hover {
+
+    background: #c84c4c;
+
+    box-shadow:
+        0 8px 18px rgba(212,90,90,.18);
+
+}
+
+.ticket-form-submit:active {
+
+    transform: scale(.98);
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:900px){
+
+    .ticket-form{
+
+        padding:14px;
+
+    }
+
+    .ticket-form-upload-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .ticket-form-actions{
+
+        justify-content:stretch;
+
+    }
+
+    .ticket-form-submit{
+
+        width:100%;
+
+    }
+
+}
