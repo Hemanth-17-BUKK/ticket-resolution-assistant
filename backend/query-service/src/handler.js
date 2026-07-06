@@ -103,10 +103,60 @@ exports.handler = async (event) => {
                     })
                 );
 
-            return successResponse(
-                200,
-                result.Items
-            );
+            const tickets = await Promise.all(
+
+            (result.Items || []).map(async (ticket) => {
+
+                if (ticket.attachments?.length) {
+
+                    ticket.attachments = await Promise.all(
+
+                        ticket.attachments.map(async (attachment) => {
+
+                            const downloadUrl = await getSignedUrl(
+
+                                s3Client,
+
+                                new GetObjectCommand({
+
+                                    Bucket: process.env.ATTACHMENTS_BUCKET,
+
+                                    Key: attachment.s3Key
+
+                                }),
+
+                                {
+
+                                    expiresIn: 3600
+
+                                }
+
+                            );
+
+                            return {
+
+                                ...attachment,
+
+                                downloadUrl
+
+                            };
+
+                        })
+
+                    );
+
+                }
+
+                return ticket;
+
+            })
+
+        );
+
+        return successResponse(
+            200,
+            tickets
+        );
         }
 
         // ==========================================
@@ -327,21 +377,43 @@ exports.handler = async (event) => {
 
             if (ticket.attachments?.length) {
 
-                for (const attachment of ticket.attachments) {
+                ticket.attachments = await Promise.all(
 
-                    attachment.downloadUrl =
-                        await getSignedUrl(
+                    ticket.attachments.map(async (attachment) => {
+
+                        const downloadUrl = await getSignedUrl(
+
                             s3Client,
+
                             new GetObjectCommand({
+
                                 Bucket: process.env.ATTACHMENTS_BUCKET,
+
                                 Key: attachment.s3Key
+
                             }),
+
                             {
+
                                 expiresIn: 3600
-                            }
-                        );
+
+                                }
+
+                            );
+
+                            return {
+
+                                ...attachment,
+
+                                downloadUrl
+
+                            };
+
+                        })
+
+                    );
+
                 }
-            }
 
             return successResponse(
                 200,
@@ -391,9 +463,59 @@ exports.handler = async (event) => {
                     })
                 );
 
+                const tickets = await Promise.all(
+
+                    (result.Items || []).map(async (ticket) => {
+
+                        if (ticket.attachments?.length) {
+
+                            ticket.attachments = await Promise.all(
+
+                                ticket.attachments.map(async (attachment) => {
+
+                                    const downloadUrl = await getSignedUrl(
+
+                                        s3Client,
+
+                                        new GetObjectCommand({
+
+                                            Bucket: process.env.ATTACHMENTS_BUCKET,
+
+                                            Key: attachment.s3Key
+
+                                        }),
+
+                                        {
+
+                                            expiresIn: 3600
+
+                                        }
+
+                                    );
+
+                                    return {
+
+                                        ...attachment,
+
+                                        downloadUrl
+
+                                    };
+
+                                })
+
+                            );
+
+                        }
+
+                        return ticket;
+
+                    })
+
+                );
+
                 return successResponse(
                     200,
-                    result.Items
+                    tickets
                 );
             }
 

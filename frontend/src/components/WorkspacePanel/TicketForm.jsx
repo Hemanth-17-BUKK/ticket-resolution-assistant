@@ -24,7 +24,27 @@ function TicketForm({
             event.target.files
         );
 
-        setFiles(selectedFiles);
+        setFiles(prev => [
+
+            ...prev,
+
+            ...selectedFiles
+
+        ]);
+
+    }
+
+    function removeFile(index) {
+
+        setFiles(
+
+            files.filter(
+
+                (_, i) => i !== index
+
+            )
+
+        );
 
     }
 
@@ -32,11 +52,21 @@ function TicketForm({
 
         <section className="ticket-form">
 
-            <h2 className="ticket-form-title">
+            {/* ================= HEADER ================= */}
 
-                Create New Ticket
+            <div className="ticket-form-header">
 
-            </h2>
+                <h2 className="ticket-form-title">
+
+                    CREATE NEW TICKET
+
+                </h2>
+
+                
+
+            </div>
+
+            {/* ================= ALERTS ================= */}
 
             {
 
@@ -66,11 +96,13 @@ function TicketForm({
 
             }
 
+            {/* ================= SUBJECT ================= */}
+
             <div className="ticket-form-field">
 
                 <label>
 
-                    SUBJECT
+                    Subject
 
                 </label>
 
@@ -78,21 +110,27 @@ function TicketForm({
 
                     type="text"
 
-                    placeholder="Enter ticket subject..."
+                    placeholder="Enter a short summary of your issue"
 
                     value={subject}
 
                     onChange={(event) =>
 
                         setSubject(
+
                             event.target.value
+
                         )
 
                     }
 
                     onKeyDown={(event) => {
 
-                        if (event.key === "Enter") {
+                        if (
+
+                            event.key === "Enter"
+
+                        ) {
 
                             event.preventDefault();
 
@@ -106,58 +144,84 @@ function TicketForm({
 
             </div>
 
+            {/* ================= MESSAGE ================= */}
+
             <div className="ticket-form-field">
 
                 <label>
 
-                    MESSAGE
+                    Message
 
                 </label>
 
                 <textarea
 
-                    placeholder="Describe your issue..."
+                    placeholder="Describe your issue in detail..."
 
                     value={message}
 
                     onChange={(event) =>
 
                         setMessage(
+
                             event.target.value
+
                         )
 
                     }
 
                 />
 
+                <div className="ticket-character-count">
+
+                    {message.length} / 2000
+
+                </div>
+
             </div>
+                        {/* ================= ATTACHMENTS ================= */}
 
             <div className="ticket-form-field">
 
                 <label>
 
-                    ATTACHMENTS
+                    Attachments
 
                 </label>
 
-                <div className="ticket-form-upload-row">
+                <label
 
-                    <label
-                        htmlFor="ticket-upload"
-                        className="ticket-form-upload-button"
-                    >
+                    htmlFor="ticket-upload"
 
-                        Choose Files
+                    className="ticket-upload-area"
 
-                    </label>
+                >
 
-                    <span className="ticket-form-upload-info">
+                    <div className="ticket-upload-icon">
+
+                        📎
+
+                    </div>
+
+                    <div className="ticket-upload-title">
+
+                        Drag & Drop files here
+
+                    </div>
+
+                    <div className="ticket-upload-subtitle">
+
+                        or click to browse your computer
+
+                    </div>
+
+                    <div className="ticket-upload-info">
 
                         PDF • PNG • JPG • DOCX
 
-                    </span>
+                    </div>
 
-                </div>
+                </label>
 
                 <input
 
@@ -174,6 +238,8 @@ function TicketForm({
                 />
 
             </div>
+
+            {/* ================= FILES ================= */}
 
             {
 
@@ -197,11 +263,37 @@ function TicketForm({
 
                                         key={index}
 
-                                        className="ticket-form-chip"
+                                        className="ticket-file-card"
 
                                     >
 
-                                        {file.name}
+                                        <span
+
+                                            className="ticket-file-name"
+
+                                        >
+
+                                            {file.name}
+
+                                        </span>
+
+                                        <button
+
+                                            type="button"
+
+                                            className="ticket-file-remove"
+
+                                            onClick={() =>
+
+                                                removeFile(index)
+
+                                            }
+
+                                        >
+
+                                            ×
+
+                                        </button>
 
                                     </div>
 
@@ -216,6 +308,8 @@ function TicketForm({
                 )
 
             }
+
+            {/* ================= ACTION ================= */}
 
             <div className="ticket-form-actions">
 

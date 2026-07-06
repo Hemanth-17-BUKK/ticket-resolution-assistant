@@ -2,54 +2,64 @@
    TICKET FORM
 ========================================================== */
 
-.ticket-form {
+.ticket-form{
 
-    display: flex;
+    display:flex;
 
-    flex-direction: column;
+    flex-direction:column;
 
-    gap: 16px;
+    flex:1;
 
-    flex: 1;
+    min-height:0;
 
-    width: 100%;
+    height:100%;
 
-    max-width: none;
+    padding:12px;
 
-    padding: 22px;
+    gap:8px;
 
-    background: linear-gradient(
-        180deg,
-        #ffffff,
-        #fbfdff
-    );
+    background:#ffffff;
 
-    border: 2px solid #dbeafe;
+    border:1px solid #e2e8f0;
 
-    border-radius: 18px;
+    border-radius:18px;
 
     box-shadow:
-        0 6px 18px rgba(15,23,42,.05);
+        0 8px 24px rgba(15,23,42,.05);
+
+    overflow:hidden;
 
 }
 
 /* ==========================================================
-   TITLE
+   HEADER
 ========================================================== */
 
-.ticket-form-title {
+.ticket-form-header{
 
-    font-size: 21px;
+    display:flex;
 
-    font-weight: 700;
+    flex-direction:column;
 
-    color: #0f172a;
+    gap:2px;
 
-    padding-bottom: 8px;
+    padding-bottom:8px;
 
-    border-bottom: 2px solid #dbeafe;
+    border-bottom:1px solid #edf2f7;
 
-    letter-spacing: -.3px;
+}
+
+.ticket-form-title{
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    line-height:1.25;
 
 }
 
@@ -58,192 +68,225 @@
 ========================================================== */
 
 .ticket-form-success,
-.ticket-form-error {
+.ticket-form-error{
 
-    padding: 10px 14px;
+    padding:8px 12px;
 
-    border-radius: 10px;
+    border-radius:8px;
 
-    font-size: 13px;
+    font-size:12px;
 
-    font-weight: 600;
-
-}
-
-.ticket-form-success {
-
-    background: #ecfdf5;
-
-    border: 1px solid #86efac;
-
-    color: #166534;
+    font-weight:600;
 
 }
 
-.ticket-form-error {
+.ticket-form-success{
 
-    background: #fef2f2;
+    background:#ecfdf5;
 
-    border: 1px solid #fecaca;
+    border:1px solid #86efac;
 
-    color: #b91c1c;
+    color:#166534;
+
+}
+
+.ticket-form-error{
+
+    background:#fef2f2;
+
+    border:1px solid #fecaca;
+
+    color:#b91c1c;
 
 }
 
 /* ==========================================================
-   FIELD
+   FIELDS
 ========================================================== */
 
-.ticket-form-field {
+.ticket-form-field{
 
-    display: flex;
+    display:flex;
 
-    flex-direction: column;
+    flex-direction:column;
 
-    gap: 5px;
+    gap:4px;
 
 }
 
-.ticket-form-field label:first-child {
+.ticket-form-field label{
 
-    font-size: 10px;
+    font-size:12px;
 
-    font-weight: 700;
+    font-weight:700;
 
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-
-    color: #64748b;
+    color:#334155;
 
 }
 
 /* ==========================================================
-   INPUT
+   INPUTS
 ========================================================== */
 
 .ticket-form-field input,
-.ticket-form-field textarea {
+.ticket-form-field textarea{
 
-    width: 100%;
+    width:100%;
 
-    border: 2px solid #dbeafe;
+    border:1px solid #dbeafe;
 
-    border-radius: 12px;
+    border-radius:10px;
 
-    background: white;
+    background:#ffffff;
 
-    font-family:
-        "Segoe UI",
-        "Inter",
-        sans-serif;
+    color:#0f172a;
 
-    font-size: 14px;
+    font-size:13px;
 
-    color: #0f172a;
+    font-family:inherit;
 
     transition:
-        border-color .25s ease,
-        box-shadow .25s ease;
+        border-color .2s,
+        box-shadow .2s;
 
 }
 
-.ticket-form-field input {
+.ticket-form-field input{
 
-    height: 42px;
+    height:40px;
 
-    padding: 0 14px;
+    padding:0 12px;
 
 }
 
-.ticket-form-field textarea {
+.ticket-form-field textarea{
 
-    resize: none;
+    height:85px;
 
-    height: 78px;
+    min-height:85px;
 
-    padding: 12px 14px;
+    max-height:85px;
 
-    line-height: 1.55;
+    resize:none;
+
+    padding:8px 10px;
+
+    line-height:1.3;
+
+    overflow-y:auto;
 
 }
 
 .ticket-form-field input:hover,
-.ticket-form-field textarea:hover {
+.ticket-form-field textarea:hover{
 
-    border-color: #93c5fd;
+    border-color:#93c5fd;
 
 }
 
 .ticket-form-field input:focus,
-.ticket-form-field textarea:focus {
+.ticket-form-field textarea:focus{
 
-    outline: none;
+    outline:none;
 
-    border-color: #2563eb;
+    border-color:#2563eb;
 
     box-shadow:
-        0 0 0 4px rgba(37,99,235,.08);
+        0 0 0 3px rgba(37,99,235,.08);
 
 }
 
 /* ==========================================================
-   UPLOAD
+   CHARACTER COUNT
 ========================================================== */
 
-.ticket-form-upload-row {
+.ticket-character-count{
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    justify-content:flex-end;
 
-    gap: 14px;
+    margin-top:2px;
 
-}
+    font-size:10px;
 
-.ticket-form-upload-button {
-
-    display: inline-flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    height: 38px;
-
-    padding: 0 18px;
-
-    border-radius: 10px;
-
-    border: 1px solid #bfdbfe;
-
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .25s;
+    color:#94a3b8;
 
 }
 
-.ticket-form-upload-button:hover {
+/* ==========================================================
+   UPLOAD AREA
+========================================================== */
 
-    background: #dbeafe;
+.ticket-upload-area{
 
-    border-color: #93c5fd;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:2px;
+
+    min-height:60px;
+
+    padding:8px 10px;
+
+    border:2px dashed #bfdbfe;
+
+    border-radius:10px;
+
+    background:#f8fbff;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        border-color .2s;
 
 }
 
-.ticket-form-upload-info {
+.ticket-upload-area:hover{
 
-    font-size: 11px;
+    background:#eff6ff;
 
-    color: #64748b;
+    border-color:#2563eb;
+
+}
+
+.ticket-upload-icon{
+
+    font-size:18px;
+
+}
+
+.ticket-upload-title{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+.ticket-upload-subtitle{
+
+    font-size:10px;
+
+    color:#64748b;
+
+}
+
+.ticket-upload-info{
+
+    margin-top:2px;
+
+    font-size:9px;
+
+    color:#94a3b8;
 
 }
 
@@ -251,39 +294,104 @@
    FILES
 ========================================================== */
 
-.ticket-form-files {
+.ticket-form-files{
 
-    display: flex;
+    display:flex;
 
-    flex-wrap: wrap;
+    flex-direction:column;
 
-    gap: 6px;
+    gap:4px;
+
+    max-height:80px;
+
+    overflow:auto;
 
 }
 
-.ticket-form-chip {
+.ticket-file-card{
 
-    padding: 4px 10px;
+    display:flex;
 
-    border-radius: 999px;
+    justify-content:space-between;
 
-    border: 1px solid #bfdbfe;
+    align-items:center;
 
-    background: #eff6ff;
+    gap:8px;
 
-    color: #2563eb;
+    padding:6px 8px;
 
-    font-size: 11px;
+    border:1px solid #dbeafe;
 
-    font-weight: 600;
+    border-radius:8px;
 
-    max-width: 160px;
+    background:#ffffff;
 
-    overflow: hidden;
+    transition:
+        border-color .2s,
+        box-shadow .2s;
 
-    white-space: nowrap;
+}
 
-    text-overflow: ellipsis;
+.ticket-file-card:hover{
+
+    border-color:#93c5fd;
+
+    box-shadow:
+        0 3px 8px rgba(37,99,235,.08);
+
+}
+
+.ticket-file-name{
+
+    flex:1;
+
+    min-width:0;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+.ticket-file-remove{
+
+    width:20px;
+
+    height:20px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        transform .15s;
+
+}
+
+.ticket-file-remove:hover{
+
+    background:#fecaca;
+
+    transform:scale(1.08);
 
 }
 
@@ -291,61 +399,94 @@
    ACTIONS
 ========================================================== */
 
-.ticket-form-actions {
+.ticket-form-actions{
 
-    display: flex;
+    display:flex;
 
-    justify-content: flex-end;
+    justify-content:center;
 
-    margin-top: auto;
+    align-items:center;
 
-    padding-top: 4px;
+    margin-top:auto;
+
+    padding-top:6px;
+
+    flex-shrink:0;
 
 }
 
 /* ==========================================================
-   SUBMIT
+   SUBMIT BUTTON
 ========================================================== */
 
-.ticket-form-submit {
+.ticket-form-submit{
 
-    min-width: 150px;
+    display:flex;
 
-    height: 40px;
+    justify-content:center;
 
-    border: none;
+    align-items:center;
 
-    border-radius: 12px;
+    width:240px;
 
-    background: #d45a5a;
+    height:46px;
 
-    color: white;
+    border:none;
 
-    font-size: 13px;
+    border-radius:12px;
 
-    font-weight: 700;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
 
-    cursor: pointer;
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    cursor:pointer;
 
     transition:
-        background .25s ease,
-        transform .2s ease,
-        box-shadow .25s ease;
-
-}
-
-.ticket-form-submit:hover {
-
-    background: #c84c4c;
+        transform .18s,
+        background .25s,
+        box-shadow .25s;
 
     box-shadow:
-        0 8px 18px rgba(212,90,90,.18);
+        0 8px 18px rgba(37,99,235,.20);
 
 }
 
-.ticket-form-submit:active {
+.ticket-form-submit:hover{
 
-    transform: scale(.98);
+    background:linear-gradient(
+        135deg,
+        #1d4ed8,
+        #1e40af
+    );
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 22px rgba(37,99,235,.25);
+
+}
+
+.ticket-form-submit:active{
+
+    transform:scale(.98);
+
+}
+
+.ticket-form-submit:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
 
 }
 
@@ -357,11 +498,39 @@
 
     .ticket-form{
 
-        padding:14px;
+        padding:12px;
+
+        gap:8px;
 
     }
 
-    .ticket-form-upload-row{
+    .ticket-form-title{
+
+        font-size:18px;
+
+    }
+
+    .ticket-form-field input{
+
+        height:38px;
+
+    }
+
+    .ticket-form-field textarea{
+
+        height:70px;
+
+    }
+
+    .ticket-upload-area{
+
+        min-height:56px;
+
+        padding:8px;
+
+    }
+
+    .ticket-file-card{
 
         flex-direction:column;
 
@@ -369,9 +538,19 @@
 
     }
 
-    .ticket-form-actions{
+    .ticket-file-name{
 
-        justify-content:stretch;
+        width:100%;
+
+        white-space:normal;
+
+        word-break:break-word;
+
+    }
+
+    .ticket-file-remove{
+
+        align-self:flex-end;
 
     }
 

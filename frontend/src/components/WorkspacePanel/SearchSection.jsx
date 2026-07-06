@@ -16,7 +16,7 @@ function SearchSection({
 
             <h2 className="search-title">
 
-                Search Ticket
+                SEARCH TICKET
 
             </h2>
 
