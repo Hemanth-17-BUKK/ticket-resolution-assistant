@@ -4,6 +4,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { loginUser } from "../services/authService";
 
+import {
+
+    isAdmin
+
+} from "../utils/auth";
+
 function Login({ setMode }) {
 
     const navigate = useNavigate();
@@ -36,7 +42,7 @@ function Login({ setMode }) {
 
             );
 
-            const token =
+            const idToken =
 
                 session
                     .getIdToken()
@@ -46,11 +52,21 @@ function Login({ setMode }) {
 
                 "token",
 
-                token
+                idToken
 
             );
 
-            navigate("/dashboard");
+            if (isAdmin()) {
+
+                navigate("/admin");
+
+            }
+
+            else {
+
+                navigate("/dashboard");
+
+            }
 
         }
 

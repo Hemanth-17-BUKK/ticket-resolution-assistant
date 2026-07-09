@@ -1,31 +1,12 @@
-import { fetchAuthSession } from "aws-amplify/auth";
+import { API_URL } from "../../utils/constants";
 
-/* ==========================================================
-   CONFIG
-========================================================== */
+import {
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    getToken,
 
-/* ==========================================================
-   AUTH HEADER
-========================================================== */
+    logout
 
-async function getHeaders() {
-
-    const session = await fetchAuthSession();
-
-    const token =
-        session.tokens?.idToken?.toString();
-
-    return {
-
-        "Content-Type": "application/json",
-
-        Authorization: `Bearer ${token}`
-
-    };
-
-}
+} from "../../utils/auth";
 
 /* ==========================================================
    REQUEST
@@ -39,11 +20,11 @@ async function request(
 
 ) {
 
-    const headers = await getHeaders();
+    const token = getToken();
 
     const response = await fetch(
 
-        `${API_BASE_URL}${endpoint}`,
+        `${API_URL}${endpoint}`,
 
         {
 
@@ -51,7 +32,9 @@ async function request(
 
             headers: {
 
-                ...headers,
+                "Content-Type": "application/json",
+
+                Authorization: `Bearer ${token}`,
 
                 ...(options.headers || {})
 
@@ -61,13 +44,37 @@ async function request(
 
     );
 
+    if (response.status === 401) {
+
+        logout();
+
+        window.location.href = "/";
+
+        throw new Error("Session expired.");
+
+    }
+
+    if (response.status === 403) {
+
+        throw new Error(
+
+            "Access denied."
+
+        );
+
+    }
+
     if (!response.ok) {
 
-        let message = "Request failed.";
+        let message =
+
+            "Something went wrong.";
 
         try {
 
-            const error = await response.json();
+            const error =
+
+                await response.json();
 
             message =
 
@@ -81,7 +88,7 @@ async function request(
 
         catch {
 
-            // Ignore JSON parsing errors
+            // Ignore parsing errors
 
         }
 
@@ -89,7 +96,11 @@ async function request(
 
     }
 
-    if (response.status === 204) {
+    if (
+
+        response.status === 204
+
+    ) {
 
         return null;
 
@@ -100,7 +111,7 @@ async function request(
 }
 
 /* ==========================================================
-   HTTP METHODS
+   API CLIENT
 ========================================================== */
 
 const apiClient = {

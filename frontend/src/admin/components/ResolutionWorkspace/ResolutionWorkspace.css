@@ -1,0 +1,721 @@
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+*,
+*::before,
+*::after{
+
+    box-sizing:border-box;
+
+}
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.resolution-workspace{
+
+    display:flex;
+
+    flex-direction:column;
+
+    width:100%;
+
+    max-width:100%;
+
+    height:100%;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:18px;
+
+    gap:16px;
+
+    background:#ffffff;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:#cbd5e1 transparent;
+
+}
+
+.resolution-workspace::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.resolution-workspace::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.resolution-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100%;
+
+    text-align:center;
+
+    color:#64748b;
+
+}
+
+.resolution-empty h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:#0f172a;
+
+}
+
+.resolution-empty p{
+
+    margin-top:10px;
+
+    max-width:320px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.resolution-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.resolution-header h2{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+}
+
+.resolution-header span{
+
+    flex-shrink:0;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   ALERTS
+========================================================== */
+
+.resolution-success,
+
+.resolution-error{
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.resolution-success{
+
+    background:#ecfdf5;
+
+    color:#15803d;
+
+    border:1px solid #bbf7d0;
+
+}
+
+.resolution-error{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    border:1px solid #fecaca;
+
+}
+
+/* ==========================================================
+   FIELD
+========================================================== */
+
+.resolution-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    width:100%;
+
+    max-width:100%;
+
+}
+
+.resolution-field label{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+}
+
+.resolution-field textarea{
+
+    display:block;
+
+    width:100%;
+
+    max-width:100%;
+
+    height:140px;
+
+    resize:none;
+
+    padding:14px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    font-size:14px;
+
+    font-family:inherit;
+
+    line-height:1.65;
+
+    color:#0f172a;
+
+    transition:
+
+        border-color .2s,
+
+        box-shadow .2s;
+
+}
+
+.resolution-field textarea:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:
+
+        0 0 0 3px rgba(
+
+            37,
+
+            99,
+
+            235,
+
+            .08
+
+        );
+
+}
+
+/* ==========================================================
+   SECTION
+========================================================== */
+
+.resolution-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    padding-top:12px;
+
+    border-top:1px solid #edf2f7;
+
+}
+
+/* ==========================================================
+   SECTION HEADINGS
+========================================================== */
+
+.resolution-section h3{
+
+    margin:0;
+
+    padding-bottom:10px;
+
+    border-bottom:2px solid #dbeafe;
+
+    color:#2563eb;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+}
+
+/* ==========================================================
+   ACTIONS
+========================================================== */
+
+.resolution-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    width:100%;
+
+    gap:12px;
+
+}
+
+.resolution-actions button{
+
+    width:100%;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+
+        all .25s ease;
+
+}
+
+.resolution-actions button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.resolution-actions button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ==========================================================
+   SAVE BUTTON
+========================================================== */
+
+.resolution-save{
+
+    background:#ffffff;
+
+    color:#2563eb;
+
+    border:1px solid #2563eb !important;
+
+}
+
+.resolution-save:hover{
+
+    background:#eff6ff;
+
+}
+
+/* ==========================================================
+   APPROVE / REJECT
+========================================================== */
+
+.resolution-decision-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    width:100%;
+
+}
+
+.resolution-approve{
+
+    background:#22c55e;
+
+    color:#ffffff;
+
+}
+
+.resolution-approve:hover{
+
+    background:#16a34a;
+
+}
+
+.resolution-reject{
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+}
+
+.resolution-reject:hover{
+
+    background:#dc2626;
+
+}
+/* ==========================================================
+   RESOLVE BUTTON
+========================================================== */
+
+.resolution-resolve{
+
+    width:100%;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        background .25s ease,
+        transform .2s ease,
+        box-shadow .25s ease;
+
+    box-shadow:
+        0 4px 12px rgba(37,99,235,.20);
+
+}
+
+.resolution-resolve:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37,99,235,.28);
+
+}
+
+.resolution-resolve:active{
+
+    transform:translateY(0);
+
+}
+
+.resolution-resolve:disabled{
+
+    background:#93c5fd;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+    transform:none;
+
+    opacity:.75;
+
+}
+
+/* ==========================================================
+   RECENT ACTIVITY
+========================================================== */
+
+.activity-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.activity-list{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:0;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding:8px 0 6px;
+
+    scrollbar-width:none;
+
+}
+
+.activity-list::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.activity-item{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    min-width:130px;
+
+    flex-shrink:0;
+
+    text-align:center;
+
+    padding:0 8px;
+
+}
+
+.activity-line{
+
+    width:16px;
+
+    height:16px;
+
+    border-radius:50%;
+
+    border:3px solid #ffffff;
+
+    box-shadow:0 0 0 2px currentColor;
+
+    margin-bottom:14px;
+
+    position:relative;
+
+}
+
+.activity-item:not(:last-child) .activity-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    left:100%;
+
+    transform:translateY(-50%);
+
+    width:118px;
+
+    height:3px;
+
+    background:#dbeafe;
+
+}
+
+.activity-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    width:100%;
+
+}
+
+.activity-status{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.activity-date{
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    color:#64748b;
+
+}
+
+.activity-empty{
+
+    padding:20px;
+
+    text-align:center;
+
+    color:#94a3b8;
+
+}
+/* ==========================================================
+   TIMELINE COLORS
+========================================================== */
+
+.activity-item.OPEN{
+
+    color:#2563eb;
+
+}
+
+.activity-item.OPEN .activity-line{
+
+    background:#2563eb;
+
+}
+
+.activity-item.PENDING,
+
+.activity-item.PENDING_APPROVAL{
+
+    color:#f59e0b;
+
+}
+
+.activity-item.PENDING .activity-line,
+
+.activity-item.PENDING_APPROVAL .activity-line{
+
+    background:#f59e0b;
+
+}
+
+.activity-item.APPROVED{
+
+    color:#16a34a;
+
+}
+
+.activity-item.APPROVED .activity-line{
+
+    background:#16a34a;
+
+}
+
+.activity-item.RESOLVED{
+
+    color:#16a34a;
+
+}
+
+.activity-item.RESOLVED .activity-line{
+
+    background:#16a34a;
+
+}
+
+.activity-item.REJECTED{
+
+    color:#dc2626;
+
+}
+
+.activity-item.REJECTED .activity-line{
+
+    background:#dc2626;
+
+}
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1200px){
+
+    .resolution-decision-actions{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .resolution-workspace{
+
+        padding:16px;
+
+    }
+
+}

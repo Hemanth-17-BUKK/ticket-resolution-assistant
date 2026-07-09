@@ -637,6 +637,36 @@ exports.handler = async (event) => {
                 ] = requestBody.resolution;
             }
 
+            /* ==========================================
+            DRAFT REPLY
+            ========================================== */
+
+            if (requestBody.draftReply) {
+
+                updateExpressionParts.push(
+                    "draftReply = :draftReply"
+                );
+
+                expressionAttributeValues[
+                    ":draftReply"
+                ] = requestBody.draftReply;
+            }
+
+            /* ==========================================
+            FINAL REPLY
+            ========================================== */
+
+            if (requestBody.finalReply) {
+
+                updateExpressionParts.push(
+                    "finalReply = :finalReply"
+                );
+
+                expressionAttributeValues[
+                    ":finalReply"
+                ] = requestBody.finalReply;
+            }
+
             if (requestBody.status === "RESOLVED") {
 
                 updateExpressionParts.push(
@@ -681,8 +711,21 @@ exports.handler = async (event) => {
                         subject:
                             existingTicket.Item.subject,
 
-                        status:
-                            requestBody.status,
+                        status: requestBody.status,
+
+                        action:
+
+                            requestBody.action ||
+
+                            (
+
+                                requestBody.status === "OPEN"
+
+                                    ? "UPDATED"
+
+                                    : requestBody.status
+
+                            ),
 
                         timestamp:
                             new Date().toISOString()

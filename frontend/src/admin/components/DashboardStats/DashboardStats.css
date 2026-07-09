@@ -1,0 +1,239 @@
+/* ==========================================================
+   STATS CONTAINER
+========================================================== */
+
+.dashboard-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:18px;
+
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.stats-card{
+
+    height:125px;
+
+    padding:18px 20px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    border-top:5px solid;
+
+    border-left:1px solid #e2e8f0;
+
+    border-right:1px solid #e2e8f0;
+
+    border-bottom:1px solid #e2e8f0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    gap:10px;
+
+    box-shadow:
+
+        0 8px 22px rgba(
+
+            15,
+
+            23,
+
+            42,
+
+            .05
+
+        );
+
+    transition:
+
+        transform .2s ease,
+
+        box-shadow .2s ease;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 14px 28px rgba(
+
+            15,
+
+            23,
+
+            42,
+
+            .08
+
+        );
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.stats-title{
+
+    margin:0;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#334155;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   VALUE
+========================================================== */
+
+.stats-value{
+
+    font-size:36px;
+
+    font-weight:800;
+
+    line-height:1;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.stats-description{
+
+    margin:0;
+
+    font-size:13px;
+
+    color:#64748b;
+
+    line-height:1.4;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   COLORS
+========================================================== */
+
+.stats-card.blue{
+
+    border-top-color:#2563eb;
+
+}
+
+.stats-card.blue .stats-value{
+
+    color:#2563eb;
+
+}
+
+.stats-card.orange{
+
+    border-top-color:#ea580c;
+
+}
+
+.stats-card.orange .stats-value{
+
+    color:#ea580c;
+
+}
+
+.stats-card.yellow{
+
+    border-top-color:#ca8a04;
+
+}
+
+.stats-card.yellow .stats-value{
+
+    color:#ca8a04;
+
+}
+
+.stats-card.green{
+
+    border-top-color:#16a34a;
+
+}
+
+.stats-card.green .stats-value{
+
+    color:#16a34a;
+
+}
+
+.stats-card.red{
+
+    border-top-color:#dc2626;
+
+}
+
+.stats-card.red .stats-value{
+
+    color:#dc2626;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1400px){
+
+    .dashboard-stats{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media (max-width:900px){
+
+    .dashboard-stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .dashboard-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

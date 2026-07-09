@@ -1,160 +1,365 @@
+import {
+
+    useEffect,
+
+    useState,
+
+    useCallback
+
+} from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import "./AdminDashboard.css";
+
+import DashboardHeader from "./components/DashboardHeader/DashboardHeader";
+
+import DashboardStats from "./components/DashboardStats/DashboardStats";
+
+import AdminWorkspace from "./components/AdminWorkspace/AdminWorkspace";
+
+import adminService from "./services/adminService";
+
+import {
+
+    getUserInfo,
+
+    logout
+
+} from "../utils/auth";
 
 function AdminDashboard() {
 
-    return (
+    const navigate = useNavigate();
 
-        <main className="admin-dashboard">
+    const [admin] = useState(
 
-            {/* ================= HEADER ================= */}
-
-            <header className="admin-header">
-
-                <div className="admin-header-left">
-
-                    <h1>
-
-                        AI Ticket Resolution
-
-                    </h1>
-
-                    <p>
-
-                        Administrator Console
-
-                    </p>
-
-                </div>
-
-                <div className="admin-header-right">
-
-                    <div className="admin-live-status">
-
-                        <span className="live-dot"></span>
-
-                        Live
-
-                    </div>
-
-                    <div className="admin-user">
-
-                        Administrator
-
-                    </div>
-
-                </div>
-
-            </header>
-
-            {/* ================= STATS ================= */}
-
-            <section className="admin-stats">
-
-                <div className="admin-stat-card">
-
-                    <span>
-
-                        Open
-
-                    </span>
-
-                    <h2>
-
-                        18
-
-                    </h2>
-
-                </div>
-
-                <div className="admin-stat-card">
-
-                    <span>
-
-                        Pending
-
-                    </span>
-
-                    <h2>
-
-                        5
-
-                    </h2>
-
-                </div>
-
-                <div className="admin-stat-card">
-
-                    <span>
-
-                        Resolved
-
-                    </span>
-
-                    <h2>
-
-                        42
-
-                    </h2>
-
-                </div>
-
-                <div className="admin-stat-card">
-
-                    <span>
-
-                        Critical
-
-                    </span>
-
-                    <h2>
-
-                        2
-
-                    </h2>
-
-                </div>
-
-            </section>
-
-            {/* ================= WORKSPACE ================= */}
-
-            <section className="admin-workspace">
-
-                <div className="admin-panel">
-
-                    <h2>
-
-                        Ticket Queue
-
-                    </h2>
-
-                </div>
-
-                <div className="admin-panel">
-
-                    <h2>
-
-                        Ticket Workspace
-
-                    </h2>
-
-                </div>
-
-                <div className="admin-panel">
-
-                    <h2>
-
-                        Resolution Workspace
-
-                    </h2>
-
-                </div>
-
-            </section>
-
-        </main>
+        getUserInfo()
 
     );
+
+    const [stats, setStats] = useState(null);
+
+    const [tickets, setTickets] = useState([]);
+
+    const [selectedTicket, setSelectedTicket] =
+
+        useState(null);
+
+    const [loading, setLoading] =
+
+        useState(true);
+
+    const [error, setError] =
+
+        useState("");
+
+    const [lastUpdated, setLastUpdated] =
+
+        useState(null);
+
+    const [refreshing, setRefreshing] =
+
+        useState(false);
+
+        /* ==========================================================
+   LOAD DASHBOARD
+========================================================== */
+
+const loadDashboard = useCallback(
+
+    async (
+
+        showLoader = false
+
+    ) => {
+
+        try {
+
+            if (showLoader) {
+
+                setLoading(true);
+
+            }
+
+            else {
+
+                setRefreshing(true);
+
+            }
+
+            setError("");
+
+            const [
+
+                dashboard,
+
+                ticketList
+
+            ] = await Promise.all([
+
+                adminService.getDashboard(),
+
+                adminService.getTickets()
+
+            ]);
+
+            setStats(dashboard);
+
+            setTickets(ticketList);
+
+            setLastUpdated(
+
+                new Date()
+
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            setError(
+
+                error.message ||
+
+                "Unable to load dashboard."
+
+            );
+
+        }
+
+        finally {
+
+            setLoading(false);
+
+            setRefreshing(false);
+
+        }
+
+    },
+
+    []
+
+);
+
+/* ==========================================================
+   LOAD TICKET DETAILS
+========================================================== */
+
+const loadTicket = useCallback(
+
+    async (
+
+        ticketId
+
+    ) => {
+
+        try {
+
+            const [
+
+                ticket,
+
+                history
+
+            ] = await Promise.all([
+
+                adminService.getTicket(
+
+                    ticketId
+
+                ),
+
+                adminService.getTicketHistory(
+
+                    ticketId
+
+                )
+
+            ]);
+
+            setSelectedTicket({
+
+                ...ticket,
+
+                history
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            setError(
+
+                error.message ||
+
+                "Unable to load ticket."
+
+            );
+
+        }
+
+    },
+
+    []
+
+);
+
+/* ==========================================================
+   LOGOUT
+========================================================== */
+
+function handleLogout() {
+
+    logout();
+
+    navigate(
+
+        "/"
+
+    );
+
+}
+/* ==========================================================
+   INITIAL LOAD
+========================================================== */
+
+useEffect(() => {
+
+    loadDashboard(true);
+
+}, [loadDashboard]);
+
+/* ==========================================================
+   POLLING
+========================================================== */
+
+useEffect(() => {
+
+    const interval = setInterval(() => {
+
+        loadDashboard(false);
+
+    }, 5000);
+
+    return () => clearInterval(interval);
+
+}, [loadDashboard]);
+
+/* ==========================================================
+   REFRESH AFTER ACTION
+========================================================== */
+
+async function refreshDashboard() {
+
+    await loadDashboard(false);
+
+    if (selectedTicket?.ticketId) {
+
+        await loadTicket(
+
+            selectedTicket.ticketId
+
+        );
+
+    }
+
+}
+
+/* ==========================================================
+   LOADING
+========================================================== */
+
+if (loading) {
+
+    return (
+
+        <div className="admin-dashboard-loading">
+
+            Loading dashboard...
+
+        </div>
+
+    );
+
+}
+
+/* ==========================================================
+   ERROR
+========================================================== */
+
+if (error && !stats) {
+
+    return (
+
+        <div className="admin-dashboard-error">
+
+            <h2>
+
+                Unable to load dashboard
+
+            </h2>
+
+            <p>
+
+                {error}
+
+            </p>
+
+        </div>
+
+    );
+
+}
+
+/* ==========================================================
+   UI
+========================================================== */
+
+return (
+
+    <div className="admin-dashboard">
+
+        <DashboardHeader
+
+            admin={admin}
+
+            lastUpdated={lastUpdated}
+
+            refreshing={refreshing}
+
+            onLogout={handleLogout}
+
+        />
+
+        <DashboardStats
+
+            stats={stats}
+
+        />
+
+        <AdminWorkspace
+
+            tickets={tickets}
+
+            selectedTicket={selectedTicket}
+
+            onSelectTicket={loadTicket}
+
+            refreshDashboard={refreshDashboard}
+
+            setSelectedTicket={setSelectedTicket}
+
+        />
+
+    </div>
+
+);
 
 }
 

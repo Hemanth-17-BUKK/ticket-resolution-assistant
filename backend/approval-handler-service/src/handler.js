@@ -68,10 +68,29 @@ exports.handler = async (event) => {
         if (!ticket) {
 
             return {
+
                 statusCode: 404,
-                body:
-                    "Ticket not found"
+
+                headers: {
+
+                    "Content-Type": "application/json",
+
+                    "Access-Control-Allow-Origin": "*",
+
+                    "Access-Control-Allow-Headers": "*",
+
+                    "Access-Control-Allow-Methods": "GET,OPTIONS"
+
+                },
+
+                body: JSON.stringify({
+
+                    message: "Ticket not found"
+
+                })
+
             };
+
         }
 
         // =====================================
@@ -207,42 +226,99 @@ Return ONLY the response text.
 `;
         }
 
-        const aiResponse =
-            await bedrockClient.send(
-                new ConverseCommand({
+        // const aiResponse =
+        //     await bedrockClient.send(
+        //         new ConverseCommand({
 
-                    modelId:
-                        process.env.MODEL_ID,
+        //             modelId:
+        //                 process.env.MODEL_ID,
 
-                    messages: [
-                        {
-                            role: "user",
+        //             messages: [
+        //                 {
+        //                     role: "user",
 
-                            content: [
-                                {
-                                    text:
-                                        prompt
-                                }
-                            ]
-                        }
-                    ]
-                })
-            );
+        //                     content: [
+        //                         {
+        //                             text:
+        //                                 prompt
+        //                         }
+        //                     ]
+        //                 }
+        //             ]
+        //         })
+        //     );
 
-        const finalReply =
-            aiResponse.output
-                .message
-                .content[0]
-                .text
-                .replace(/\n/g, " ")
-                .replace(/\s+/g, " ")
-                .trim();
+        // const finalReply =
+        //     aiResponse.output
+        //         .message
+        //         .content[0]
+        //         .text
+        //         .replace(/\n/g, " ")
+        //         .replace(/\s+/g, " ")
+        //         .trim();
 
-        console.log(
-            "Final Reply:",
-            finalReply
+        // console.log(
+        //     "Final Reply:",
+        //     finalReply
+        // );
+        
+        /* =====================================
+   Generate Final Reply
+===================================== */
+
+let finalReply;
+
+if (ticket.draftReply) {
+
+    console.log(
+        "Using saved draft reply."
+    );
+
+    finalReply = ticket.draftReply;
+
+}
+else {
+
+    console.log(
+        "No saved draft found. Generating reply using Bedrock."
+    );
+
+    const aiResponse =
+        await bedrockClient.send(
+            new ConverseCommand({
+
+                modelId:
+                    process.env.MODEL_ID,
+
+                messages: [
+                    {
+                        role: "user",
+
+                        content: [
+                            {
+                                text: prompt
+                            }
+                        ]
+                    }
+                ]
+            })
         );
 
+    finalReply =
+        aiResponse.output
+            .message
+            .content[0]
+            .text
+            .replace(/\n/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+
+}
+
+console.log(
+    "Final Reply:",
+    finalReply
+);
         // =====================================
         // Ticket Status
         // =====================================
@@ -308,6 +384,8 @@ Return ONLY the response text.
 
                     status,
 
+                    action: status,
+
                     tool,
 
                     timestamp:
@@ -316,37 +394,236 @@ Return ONLY the response text.
             })
         );
 
+        /* =====================================
+        RESPONSE TYPE
+        ===================================== */
+
+        const wantsJson = Boolean(
+
+            event.headers?.authorization ||
+
+            event.headers?.Authorization
+
+        );
+
         // =====================================
         // Response Page
         // =====================================
 
-        return {
+       /* =====================================
+   DASHBOARD RESPONSE
+===================================== */
 
-            statusCode: 200,
+if (wantsJson) {
 
-            headers: {
-                "Content-Type":
-                    "text/html"
-            },
+    return {
 
-            body: `
-            <html>
-                <body style="font-family: Arial; padding:40px;">
-                    <h1>Ticket ${ticketId}</h1>
-                    <h2>Status: ${status}</h2>
-                    <p>${finalReply}</p>
-                </body>
-            </html>
-            `
-        };
+        statusCode: 200,
+
+        headers: {
+
+            "Content-Type": "application/json",
+
+            "Access-Control-Allow-Origin": "*",
+
+            "Access-Control-Allow-Headers": "Content-Type,Authorization",
+
+            "Access-Control-Allow-Methods": "GET,OPTIONS"
+
+        },
+
+        body: JSON.stringify({
+
+            success: true,
+
+            ticketId,
+
+            status,
+
+            finalReply
+
+        })
+
+    };
+
+}
+
+/* =====================================
+   EMAIL RESPONSE
+===================================== */
+
+return {
+
+    statusCode: 200,
+
+    headers: {
+
+        "Content-Type": "text/html"
+
+    },
+
+    body: `
+    <html>
+
+        <head>
+
+            <title>Ticket Approval</title>
+
+        </head>
+
+        <body
+            style="
+                font-family: Arial, sans-serif;
+                max-width:600px;
+                margin:40px auto;
+                padding:30px;
+                border:1px solid #e5e7eb;
+                border-radius:12px;
+                box-shadow:0 2px 10px rgba(0,0,0,.08);
+            "
+        >
+
+            <h2
+                style="color:#2563eb;"
+            >
+
+                Ticket Updated Successfully
+
+            </h2>
+
+            <hr>
+
+            <p>
+
+                <strong>Ticket ID:</strong>
+                ${ticketId}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+                ${status}
+
+            </p>
+
+            <p>
+
+                <strong>Customer Response:</strong>
+
+            </p>
+
+            <div
+                style="
+                    background:#f8fafc;
+                    padding:16px;
+                    border-radius:8px;
+                    border-left:4px solid #2563eb;
+                "
+            >
+
+                ${finalReply}
+
+            </div>
+
+            <p
+                style="
+                    margin-top:30px;
+                    color:#64748b;
+                    font-size:13px;
+                "
+            >
+
+                This approval has already been processed.
+                You may close this window.
+
+            </p>
+
+        </body>
+
+    </html>
+    `
+
+};
 
     } catch (error) {
 
-        console.error(
-            "Approval Handler Error:",
-            error
-        );
+    console.error(
+        "Approval Handler Error:",
+        error
+    );
 
-        throw error;
+    const wantsJson = Boolean(
+
+        event.headers?.authorization ||
+
+        event.headers?.Authorization
+
+    );
+
+    if (wantsJson) {
+
+        return {
+
+            statusCode: 500,
+
+            headers: {
+
+                "Content-Type": "application/json",
+
+                "Access-Control-Allow-Origin": "*",
+
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+
+                "Access-Control-Allow-Methods": "GET,OPTIONS"
+
+            },
+
+            body: JSON.stringify({
+
+                message: error.message
+
+            })
+
+        };
+
     }
+
+    return {
+
+        statusCode: 500,
+
+        headers: {
+
+            "Content-Type": "text/html"
+
+        },
+
+        body: `
+
+        <html>
+
+            <body style="font-family:Arial;padding:40px;">
+
+                <h2 style="color:#dc2626;">
+
+                    Approval Failed
+
+                </h2>
+
+                <p>
+
+                    ${error.message}
+
+                </p>
+
+            </body>
+
+        </html>
+
+        `
+
+    };
+
+}
 };

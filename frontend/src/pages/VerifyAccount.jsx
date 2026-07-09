@@ -6,6 +6,12 @@ import {
     loginUser
 } from "../services/authService";
 
+import {
+
+    isAdmin
+
+} from "../utils/auth";
+
 function VerifyAccount({
 
     authData,
@@ -56,21 +62,31 @@ function VerifyAccount({
 
             );
 
-            const token = session
+            const idToken =
 
-                .getIdToken()
-
-                .getJwtToken();
+                session
+                    .getIdToken()
+                    .getJwtToken();
 
             localStorage.setItem(
 
                 "token",
 
-                token
+                idToken
 
             );
 
-            navigate("/dashboard");
+            if (isAdmin()) {
+
+                navigate("/admin");
+
+            }
+
+            else {
+
+                navigate("/dashboard");
+
+            }
 
         }
 

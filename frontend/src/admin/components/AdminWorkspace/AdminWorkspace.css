@@ -1,0 +1,155 @@
+/* ==========================================================
+   WORKSPACE
+========================================================== */
+
+.admin-workspace{
+
+    display:grid;
+
+    grid-template-columns:minmax(320px,0.9fr) minmax(0,1fr) minmax(0,1fr);
+
+    gap:20px;
+
+    flex:1;
+
+    min-height:0;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   PANEL CARDS
+========================================================== */
+
+.workspace-left,
+
+.workspace-center,
+
+.workspace-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+
+    min-height:0;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    box-shadow:
+
+        0 8px 24px rgba(
+
+            15,
+
+            23,
+
+            42,
+
+            .05
+
+        );
+
+    transition:
+
+        box-shadow .25s,
+
+        transform .25s;
+
+}
+
+.workspace-left:hover,
+
+.workspace-center:hover,
+
+.workspace-right:hover{
+
+    box-shadow:
+
+        0 14px 28px rgba(
+
+            15,
+
+            23,
+
+            42,
+
+            .08
+
+        );
+
+}
+
+/* ==========================================================
+   SCROLL
+========================================================== */
+
+.workspace-left{
+
+    overflow:hidden;
+
+}
+
+.workspace-center{
+
+    overflow:hidden;
+
+}
+
+.workspace-right{
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1500px){
+
+    .admin-workspace{
+
+        grid-template-columns:
+
+            minmax(300px,.85fr)
+
+            minmax(0,1fr)
+
+            minmax(0,1fr);
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .admin-workspace{
+
+        grid-template-columns:1fr;
+
+        overflow:auto;
+
+    }
+
+    .workspace-left,
+
+    .workspace-center,
+
+    .workspace-right{
+
+        min-height:600px;
+
+    }
+
+}

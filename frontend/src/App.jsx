@@ -1,50 +1,103 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route
+
+    BrowserRouter,
+
+    Routes,
+
+    Route
+
 } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import VerifyAccount from "./pages/VerifyAccount";
-import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
+
+import Dashboard from "./pages/Dashboard";
+
+import Signup from "./pages/Signup";
+
+import VerifyAccount from "./pages/VerifyAccount";
+
+import AdminDashboard from "./admin/AdminDashboard";
+
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
 
-  return (
+    return (
 
-    <BrowserRouter>
+        <BrowserRouter>
 
-      <Routes>
+            <Routes>
 
-        <Route
+                <Route
 
-            path="/"
+                    path="/"
 
-            element={<Auth/>}
+                    element={<Auth />}
 
-        />
+                />
 
-        <Route
-          path="/signup"
-          element={<Signup />}
-        />
+                <Route
 
-        <Route
-          path="/verify"
-          element={<VerifyAccount />}
-        />
+                    path="/signup"
 
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+                    element={<Signup />}
 
-      </Routes>
+                />
 
-    </BrowserRouter>
-  );
+                <Route
+
+                    path="/verify"
+
+                    element={<VerifyAccount />}
+
+                />
+
+                <Route
+
+                    path="/dashboard"
+
+                    element={
+
+                        <ProtectedRoute
+
+                            role="Customer"
+
+                        >
+
+                            <Dashboard />
+
+                        </ProtectedRoute>
+
+                    }
+
+                />
+
+                <Route
+
+                    path="/admin"
+
+                    element={
+
+                        <ProtectedRoute
+
+                            role="Admin"
+
+                        >
+
+                            <AdminDashboard />
+
+                        </ProtectedRoute>
+
+                    }
+
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+
+    );
+
 }
 
 export default App;

@@ -1,5 +1,5 @@
 /* ==========================================================
-   ADMIN DASHBOARD
+   PAGE
 ========================================================== */
 
 .admin-dashboard{
@@ -8,15 +8,77 @@
 
     flex-direction:column;
 
-    gap:22px;
+    gap:20px;
 
-    height:calc(100vh - 110px);
+    width:100%;
 
-    padding:28px;
+    height:100vh;
 
-    background:#eef3f8;
+    padding:24px;
+
+    background:#f8fafc;
 
     overflow:hidden;
+
+    box-sizing:border-box;
+
+}
+
+/* ==========================================================
+   LOADING
+========================================================== */
+
+.admin-dashboard-loading,
+
+.admin-dashboard-error{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    height:100vh;
+
+    background:#f8fafc;
+
+    color:#334155;
+
+}
+
+.admin-dashboard-loading{
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.admin-dashboard-error h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:#dc2626;
+
+}
+
+.admin-dashboard-error p{
+
+    margin-top:12px;
+
+    font-size:15px;
+
+    color:#64748b;
+
+    text-align:center;
+
+    max-width:500px;
 
 }
 
@@ -24,130 +86,9 @@
    HEADER
 ========================================================== */
 
-.admin-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:22px 28px;
-
-    background:#ffffff;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.05);
+.admin-dashboard > :nth-child(1){
 
     flex-shrink:0;
-
-}
-
-.admin-header-left{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:4px;
-
-}
-
-.admin-header-left h1{
-
-    margin:0;
-
-    font-size:28px;
-
-    font-weight:700;
-
-    color:#0f172a;
-
-}
-
-.admin-header-left p{
-
-    margin:0;
-
-    font-size:14px;
-
-    color:#64748b;
-
-}
-
-.admin-header-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-}
-
-.admin-live-status{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:8px 16px;
-
-    border-radius:999px;
-
-    background:#ecfdf5;
-
-    border:1px solid #bbf7d0;
-
-    color:#15803d;
-
-    font-size:13px;
-
-    font-weight:700;
-
-}
-
-.live-dot{
-
-    width:10px;
-
-    height:10px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    animation:pulse 2s infinite;
-
-}
-
-.admin-user{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:8px 18px;
-
-    border-radius:999px;
-
-    background:#eff6ff;
-
-    border:1px solid #bfdbfe;
-
-    color:#2563eb;
-
-    font-size:13px;
-
-    font-weight:700;
 
 }
 
@@ -155,73 +96,9 @@
    STATS
 ========================================================== */
 
-.admin-stats{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:20px;
+.admin-dashboard > :nth-child(2){
 
     flex-shrink:0;
-
-}
-
-.admin-stat-card{
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    gap:6px;
-
-    padding:22px;
-
-    background:#ffffff;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.05);
-
-    transition:
-        transform .2s,
-        box-shadow .25s;
-
-}
-
-.admin-stat-card:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 14px 28px rgba(15,23,42,.08);
-
-}
-
-.admin-stat-card span{
-
-    font-size:13px;
-
-    color:#64748b;
-
-    font-weight:600;
-
-}
-
-.admin-stat-card h2{
-
-    margin:0;
-
-    font-size:34px;
-
-    font-weight:700;
-
-    color:#0f172a;
 
 }
 
@@ -229,19 +106,7 @@
    WORKSPACE
 ========================================================== */
 
-.admin-workspace{
-
-    display:grid;
-
-    grid-template-columns:
-
-        28%
-
-        44%
-
-        28%;
-
-    gap:22px;
+.admin-dashboard > :nth-child(3){
 
     flex:1;
 
@@ -252,137 +117,28 @@
 }
 
 /* ==========================================================
-   PANELS
-========================================================== */
-
-.admin-panel{
-
-    display:flex;
-
-    flex-direction:column;
-
-    min-height:0;
-
-    background:#ffffff;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.05);
-
-    overflow:hidden;
-
-    transition:
-        box-shadow .25s;
-
-}
-
-.admin-panel:hover{
-
-    box-shadow:
-        0 14px 30px rgba(15,23,42,.08);
-
-}
-
-.admin-panel h2{
-
-    margin:0;
-
-    padding:20px 22px;
-
-    border-bottom:1px solid #edf2f7;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    color:#0f172a;
-
-}
-
-/* ==========================================================
-   ANIMATION
-========================================================== */
-
-@keyframes pulse{
-
-    0%{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-    50%{
-
-        opacity:.4;
-
-        transform:scale(1.3);
-
-    }
-
-    100%{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-}
-
-/* ==========================================================
    RESPONSIVE
 ========================================================== */
 
-@media (max-width:1400px){
-
-    .admin-workspace{
-
-        grid-template-columns:
-
-            30%
-
-            40%
-
-            30%;
-
-    }
-
-}
-
-@media (max-width:1100px){
+@media (max-width:1200px){
 
     .admin-dashboard{
 
-        height:auto;
-
-    }
-
-    .admin-header{
-
-        flex-direction:column;
-
-        align-items:flex-start;
+        padding:20px;
 
         gap:18px;
 
     }
 
-    .admin-stats{
+}
 
-        grid-template-columns:
+@media (max-width:900px){
 
-            repeat(2,1fr);
+    .admin-dashboard{
 
-    }
+        padding:16px;
 
-    .admin-workspace{
-
-        grid-template-columns:1fr;
+        gap:16px;
 
     }
 
@@ -392,19 +148,11 @@
 
     .admin-dashboard{
 
-        padding:18px;
+        height:auto;
 
-    }
+        min-height:100vh;
 
-    .admin-header{
-
-        padding:18px;
-
-    }
-
-    .admin-stats{
-
-        grid-template-columns:1fr;
+        overflow:auto;
 
     }
 

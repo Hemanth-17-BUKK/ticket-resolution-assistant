@@ -1,0 +1,467 @@
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.ticket-viewer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    gap:14px;
+
+    height:100%;
+
+    padding:18px;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.ticket-viewer-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100%;
+
+    color:#64748b;
+
+    text-align:center;
+
+}
+
+.ticket-viewer-empty h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:#0f172a;
+
+}
+
+.ticket-viewer-empty p{
+
+    margin-top:12px;
+
+    max-width:320px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.viewer-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.viewer-header-left{
+
+    flex:1;
+
+}
+
+.viewer-ticket-id{
+
+    display:inline-block;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.viewer-header h2{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    line-height:1.4;
+
+}
+
+.viewer-created{
+
+    margin-top:14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+.viewer-created span{
+
+    font-size:14px;
+
+    color:#0f172a;
+
+    font-weight:600;
+
+}
+
+.viewer-header-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:8px;
+
+}
+
+.viewer-status-label{
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+.viewer-status{
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   STATUS COLORS
+========================================================== */
+
+.viewer-status.OPEN{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+.viewer-status.PENDING_APPROVAL{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+.viewer-status.APPROVED{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.viewer-status.REJECTED{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.viewer-status.RESOLVED{
+
+    background:#ede9fe;
+
+    color:#6d28d9;
+
+}
+
+/* ==========================================================
+   INFORMATION CARDS
+========================================================== */
+
+.viewer-info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+.viewer-info-card{
+
+    padding:12px;
+
+    min-height:62px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
+
+}
+
+.viewer-info-card span{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:11px;
+
+    color:#64748b;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+}
+
+.viewer-info-card strong{
+
+    display:block;
+
+    font-size:14px;
+
+    color:#0f172a;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.viewer-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.viewer-section h3{
+
+    margin:0;
+
+    padding-bottom:6px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+/* ==========================================================
+   CUSTOMER MESSAGE
+========================================================== */
+
+.viewer-message{
+
+    padding:12px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+    min-height:72px;
+
+    line-height:1.55;
+
+    color:#334155;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+}
+
+/* ==========================================================
+   AI RESPONSE
+========================================================== */
+
+.viewer-ai{
+
+    padding:12px;
+
+    border:1px solid #bfdbfe;
+
+    border-radius:14px;
+
+    background:#eff6ff;
+
+    min-height:82px;
+
+    line-height:1.55;
+
+    color:#1e3a8a;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+}
+
+/* ==========================================================
+   ATTACHMENTS
+========================================================== */
+
+.viewer-files{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+.viewer-file{
+
+    padding:10px 14px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:
+
+        all .2s ease;
+
+}
+
+.viewer-file:hover{
+
+    background:#eff6ff;
+
+    border-color:#93c5fd;
+
+}
+
+.viewer-file span{
+
+    display:block;
+
+    max-width:220px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .viewer-info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .ticket-viewer{
+
+        padding:18px;
+
+    }
+
+    .viewer-header{
+
+        flex-direction:column;
+
+    }
+
+    .viewer-header-right{
+
+        align-items:flex-start;
+
+    }
+
+}
