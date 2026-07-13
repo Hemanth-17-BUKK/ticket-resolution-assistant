@@ -90,6 +90,30 @@ const loadDashboard = useCallback(
 
             setError("");
 
+            // const [
+
+            //     dashboard,
+
+            //     ticketList
+
+            // ] = await Promise.all([
+
+            //     adminService.getDashboard(),
+
+            //     adminService.getTickets()
+
+            // ]);
+
+            // setStats(dashboard);
+
+            // setTickets(ticketList);
+
+            // setLastUpdated(
+
+            //     new Date()
+
+            // );
+
             const [
 
                 dashboard,
@@ -104,9 +128,39 @@ const loadDashboard = useCallback(
 
             ]);
 
+            const sortedTickets = [...ticketList].sort(
+
+                (a, b) => {
+
+                    const dateA = new Date(
+
+                        a.createdAt ||
+
+                        a.timestamp ||
+
+                        0
+
+                    );
+
+                    const dateB = new Date(
+
+                        b.createdAt ||
+
+                        b.timestamp ||
+
+                        0
+
+                    );
+
+                    return dateB - dateA;
+
+                }
+
+            );
+
             setStats(dashboard);
 
-            setTickets(ticketList);
+            setTickets(sortedTickets);
 
             setLastUpdated(
 
@@ -275,19 +329,19 @@ async function refreshDashboard() {
    LOADING
 ========================================================== */
 
-if (loading) {
+// if (loading) {
 
-    return (
+//     return (
 
-        <div className="admin-dashboard-loading">
+//         <div className="admin-dashboard-loading">
 
-            Loading dashboard...
+//             Loading dashboard...
 
-        </div>
+//         </div>
 
-    );
+//     );
 
-}
+// }
 
 /* ==========================================================
    ERROR

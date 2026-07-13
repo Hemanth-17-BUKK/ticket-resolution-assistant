@@ -7,7 +7,7 @@ const s3Client = new S3Client({});
 const corsHeaders = {
 
     "Access-Control-Allow-Origin":
-        "http://localhost:5173",
+        "*",
 
     "Access-Control-Allow-Headers":
         "Content-Type,Authorization",
