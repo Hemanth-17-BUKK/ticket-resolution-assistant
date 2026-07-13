@@ -429,12 +429,133 @@
     white-space:nowrap;
 
 }
-
 /* ==========================================================
-   RESPONSIVE
+   LARGE LAPTOP (1600px)
 ========================================================== */
 
-@media(max-width:1200px){
+@media (max-width:1600px){
+
+    .ticket-viewer{
+
+        padding:16px;
+
+        gap:12px;
+
+    }
+
+    .viewer-header{
+
+        gap:16px;
+
+    }
+
+    .viewer-header h2{
+
+        font-size:19px;
+
+    }
+
+    .viewer-info-grid{
+
+        gap:8px;
+
+    }
+
+    .viewer-info-card{
+
+        padding:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   14" LAPTOP (1400px)
+========================================================== */
+
+@media (max-width:1400px){
+
+    .ticket-viewer{
+
+        padding:14px;
+
+        gap:10px;
+
+    }
+
+    .viewer-header{
+
+        padding-bottom:10px;
+
+    }
+
+    .viewer-ticket-id{
+
+        font-size:11px;
+
+    }
+
+    .viewer-header h2{
+
+        font-size:18px;
+
+    }
+
+    .viewer-created{
+
+        margin-top:10px;
+
+    }
+
+    .viewer-status{
+
+        padding:7px 14px;
+
+        font-size:11px;
+
+    }
+
+    .viewer-info-grid{
+
+        grid-template-columns:repeat(3,minmax(0,1fr));
+
+        gap:8px;
+
+    }
+
+    .viewer-info-card{
+
+        min-height:58px;
+
+    }
+
+    .viewer-info-card span{
+
+        font-size:10px;
+
+    }
+
+    .viewer-info-card strong{
+
+        font-size:13px;
+
+    }
+
+    .viewer-message,
+
+    .viewer-ai{
+
+        padding:10px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
 
     .viewer-info-grid{
 
@@ -444,23 +565,49 @@
 
 }
 
-@media(max-width:768px){
+/* ==========================================================
+   TABLET
+========================================================== */
 
-    .ticket-viewer{
-
-        padding:18px;
-
-    }
+@media (max-width:992px){
 
     .viewer-header{
 
         flex-direction:column;
+
+        align-items:flex-start;
 
     }
 
     .viewer-header-right{
 
         align-items:flex-start;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .ticket-viewer{
+
+        padding:16px;
+
+    }
+
+    .viewer-files{
+
+        flex-direction:column;
+
+    }
+
+    .viewer-file{
+
+        width:100%;
 
     }
 

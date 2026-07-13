@@ -162,9 +162,98 @@
     transform:rotate(180deg);
 
 }
+/* ==========================================================
+   LARGE LAPTOP (1600px and below)
+========================================================== */
+
+@media (max-width:1600px){
+
+    .dashboard-header{
+
+        height:74px;
+
+        padding:0 22px;
+
+    }
+
+    .dashboard-title{
+
+        font-size:20px;
+
+    }
+
+    .admin-profile-button{
+
+        height:44px;
+
+        padding:0 14px 0 10px;
+
+        gap:10px;
+
+    }
+
+    .admin-profile-dropdown{
+
+        width:270px;
+
+    }
+
+}
 
 /* ==========================================================
-   RESPONSIVE
+   14" LAPTOP
+========================================================== */
+
+@media (max-width:1400px){
+
+    .dashboard-header{
+
+        height:68px;
+
+        padding:0 18px;
+
+    }
+
+    .dashboard-title{
+
+        font-size:19px;
+
+    }
+
+    .admin-profile-button{
+
+        height:42px;
+
+        padding:0 12px 0 8px;
+
+    }
+
+    .admin-avatar{
+
+        width:32px;
+
+        height:32px;
+
+        font-size:12px;
+
+    }
+
+    .admin-profile-button span{
+
+        font-size:13px;
+
+    }
+
+    .admin-profile-dropdown{
+
+        width:255px;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
 ========================================================== */
 
 @media (max-width:900px){
@@ -185,7 +274,7 @@
 
     .dashboard-title{
 
-        font-size:24px;
+        font-size:22px;
 
     }
 
@@ -196,6 +285,60 @@
         display:flex;
 
         justify-content:flex-end;
+
+    }
+
+    .admin-profile-dropdown{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:600px){
+
+    .dashboard-header{
+
+        padding:16px;
+
+    }
+
+    .dashboard-title{
+
+        font-size:20px;
+
+    }
+
+    .admin-profile-wrapper{
+
+        width:100%;
+
+    }
+
+    .admin-profile-button{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    .admin-profile-dropdown{
+
+        right:0;
+
+        left:auto;
+
+        width:100%;
+
+        max-width:none;
 
     }
 

@@ -485,10 +485,170 @@
 }
 
 /* ==========================================================
-   RESPONSIVE
+   LARGE LAPTOP (1600px)
+========================================================== */
+
+@media (max-width:1600px){
+
+    .ticket-queue-header{
+
+        padding:18px;
+
+    }
+
+    .ticket-search{
+
+        padding:16px 18px 12px;
+
+    }
+
+    .ticket-filters{
+
+        padding:0 18px 16px;
+
+        gap:10px;
+
+    }
+
+    .ticket-list{
+
+        padding:0 18px 18px;
+
+        gap:12px;
+
+    }
+
+    .queue-card{
+
+        padding:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   14" LAPTOP (1400px)
+========================================================== */
+
+@media (max-width:1400px){
+
+    .ticket-queue-header{
+
+        padding:16px;
+
+    }
+
+    .ticket-queue-header h2{
+
+        font-size:17px;
+
+    }
+
+    .ticket-search{
+
+        padding:14px 16px 10px;
+
+    }
+
+    .ticket-search input{
+
+        height:42px;
+
+        font-size:13px;
+
+    }
+
+    .ticket-filters{
+
+        padding:0 16px 14px;
+
+        gap:8px;
+
+    }
+
+    .ticket-filters select{
+
+        height:40px;
+
+        font-size:12px;
+
+    }
+
+    .ticket-list{
+
+        padding:0 16px 16px;
+
+        gap:10px;
+
+    }
+
+    .queue-card{
+
+        padding:13px;
+
+        gap:8px;
+
+    }
+
+    .queue-subject{
+
+        font-size:14px;
+
+    }
+
+    .queue-customer{
+
+        font-size:12px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
+
+    .ticket-queue{
+
+        min-height:500px;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .ticket-filters{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
 ========================================================== */
 
 @media (max-width:768px){
+
+    .ticket-queue-header{
+
+        padding:16px;
+
+    }
+
+    .ticket-search{
+
+        padding:14px 16px 12px;
+
+    }
 
     .ticket-filters{
 

@@ -697,7 +697,113 @@
 
 }
 /* ==========================================================
-   RESPONSIVE
+   LARGE LAPTOP (1600px)
+========================================================== */
+
+@media (max-width:1600px){
+
+    .resolution-workspace{
+
+        padding:16px;
+
+        gap:14px;
+
+    }
+
+    .resolution-field textarea{
+
+        height:130px;
+
+    }
+
+    .resolution-section{
+
+        gap:10px;
+
+    }
+
+    .activity-item{
+
+        min-width:120px;
+
+    }
+
+    .activity-item:not(:last-child) .activity-line::after{
+
+        width:108px;
+
+    }
+
+}
+
+/* ==========================================================
+   14" LAPTOP (1400px)
+========================================================== */
+
+@media (max-width:1400px){
+
+    .resolution-workspace{
+
+        padding:14px;
+
+        gap:12px;
+
+    }
+
+    .resolution-header{
+
+        padding-bottom:10px;
+
+    }
+
+    .resolution-header h2{
+
+        font-size:17px;
+
+    }
+
+    .resolution-field textarea{
+
+        height:120px;
+
+        padding:12px;
+
+        font-size:13px;
+
+    }
+
+    .resolution-section h3{
+
+        font-size:15px;
+
+    }
+
+    .resolution-actions button,
+
+    .resolution-resolve{
+
+        height:42px;
+
+        font-size:13px;
+
+    }
+
+    .activity-item{
+
+        min-width:110px;
+
+    }
+
+    .activity-item:not(:last-child) .activity-line::after{
+
+        width:98px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL LAPTOP
 ========================================================== */
 
 @media (max-width:1200px){
@@ -710,11 +816,49 @@
 
 }
 
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .resolution-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .resolution-header span{
+
+        align-self:flex-start;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
 @media (max-width:768px){
 
     .resolution-workspace{
 
         padding:16px;
+
+    }
+
+    .activity-item{
+
+        min-width:100px;
+
+    }
+
+    .activity-item:not(:last-child) .activity-line::after{
+
+        width:88px;
 
     }
 
