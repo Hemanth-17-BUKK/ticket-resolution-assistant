@@ -72,9 +72,9 @@
     display: flex;
     flex-direction: column;
 
-    gap: 14px;
+    gap: 12px;
 
-    padding: 16px;
+    padding: 14px;
 
     border: 2px solid;
 
@@ -390,23 +390,142 @@
 
 /* =========================================== */
 
-@media (max-width: 992px) {
+/* ===========================================
+   LARGE LAPTOP
+=========================================== */
 
-    .ticket-history-bottom {
+@media (max-width:1600px){
 
-        flex-direction: column;
+    .ticket-history-title{
 
-        align-items: flex-start;
+        font-size:21px;
 
-        gap: 12px;
+        padding-bottom:12px;
+
+        margin-bottom:16px;
+
     }
 
-    .ticket-history-right {
+    .ticket-history-list{
 
-        width: 100%;
+        gap:14px;
 
-        justify-content: space-between;
-
-        margin-left: 0;
     }
+
+}
+
+/* ===========================================
+   14" LAPTOP
+=========================================== */
+
+@media (max-width:1440px) and (min-width:1201px){
+
+    .ticket-history-title{
+
+        font-size:20px;
+
+        padding-bottom:10px;
+
+        margin-bottom:14px;
+
+    }
+
+    .ticket-history-list{
+
+        gap:12px;
+
+        padding:4px;
+
+    }
+
+    .ticket-history-card{
+
+        gap:10px;
+
+        padding:14px;
+
+        border-radius:16px;
+
+    }
+
+    .ticket-history-subject-box{
+
+        padding:11px 13px;
+
+    }
+
+    .ticket-history-subject{
+
+        font-size:14px;
+
+    }
+
+    .ticket-history-status{
+
+        min-width:112px;
+
+        height:28px;
+
+        font-size:9px;
+
+        padding:0 12px;
+
+    }
+
+    .ticket-history-date{
+
+        padding:5px 10px;
+
+        font-size:9px;
+
+    }
+
+}
+
+/* ===========================================
+   TABLET
+=========================================== */
+
+@media (max-width:992px){
+
+    .ticket-history-bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+    .ticket-history-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+        margin-left:0;
+
+    }
+
+}
+
+/* ===========================================
+   MOBILE
+=========================================== */
+
+@media (max-width:768px){
+
+    .ticket-history-card{
+
+        padding:14px;
+
+    }
+
+    .ticket-history-subject{
+
+        white-space:normal;
+
+    }
+
 }

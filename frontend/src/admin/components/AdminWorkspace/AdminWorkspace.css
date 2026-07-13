@@ -7,9 +7,9 @@
     display:grid;
 
     grid-template-columns:
-        minmax(300px,0.95fr)
-        minmax(420px,1.2fr)
-        minmax(420px,1.2fr);
+        30%
+        30%
+        40%;
 
     gap:clamp(12px,1vw,20px);
 
@@ -73,18 +73,8 @@
    PANEL CONTENT
 ========================================================== */
 
-.workspace-left{
-
-    overflow:hidden;
-
-}
-
-.workspace-center{
-
-    overflow:hidden;
-
-}
-
+.workspace-left,
+.workspace-center,
 .workspace-right{
 
     overflow:hidden;
@@ -100,12 +90,9 @@
     .admin-workspace{
 
         grid-template-columns:
-
-            340px
-
-            1fr
-
-            1fr;
+            30%
+            30%
+            40%;
 
     }
 
@@ -120,12 +107,11 @@
     .admin-workspace{
 
         grid-template-columns:
+            29%
+            31%
+            40%;
 
-            minmax(280px,.9fr)
-
-            minmax(380px,1.15fr)
-
-            minmax(380px,1.15fr);
+        gap:16px;
 
     }
 
@@ -135,41 +121,16 @@
    14" LAPTOP
 ========================================================== */
 
-@media (max-width:1400px){
+@media (max-width:1440px) and (min-width:1201px){
 
     .admin-workspace{
 
         grid-template-columns:
+            30%
+            30%
+            40%;
 
-            280px
-
-            1fr
-
-            1fr;
-
-    }
-
-}
-
-/* ==========================================================
-   SMALL LAPTOP
-========================================================== */
-
-@media (max-width:1200px){
-
-    .admin-workspace{
-
-        grid-template-columns:1fr;
-
-        overflow:auto;
-
-    }
-
-    .workspace-left,
-    .workspace-center,
-    .workspace-right{
-
-        min-height:550px;
+        gap:14px;
 
     }
 
@@ -188,6 +149,8 @@
         flex-direction:column;
 
         overflow:auto;
+
+        gap:16px;
 
     }
 

@@ -90,29 +90,20 @@ body {
 
 }
 
-.dashboard {
+.dashboard{
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
+        20%
+        50%
+        30%;
 
-        310px
+    gap:24px;
 
-        1fr
+    padding:28px;
 
-        360px;
-
-    gap: 28px;
-
-    padding: 28px;
-
-    height:
-
-        calc(
-
-            100vh - 110px
-
-        );
+    height:calc(100vh - 110px);
 
 }
 .left-panel,
@@ -415,32 +406,44 @@ button:disabled {
 }
 
 /* ===========================
-   RESPONSIVE
+   LARGE LAPTOP
 =========================== */
 
-@media (max-width: 1400px) {
+@media (max-width:1600px){
 
-    .dashboard {
+    .dashboard{
 
         grid-template-columns:
+            22%
+            50%
+            28%;
 
-            280px
+        gap:20px;
 
-            1fr
-
-            320px;
+        padding:22px;
 
     }
 
 }
 
-@media (max-width: 1100px) {
+/* ===========================
+   14" LAPTOP
+=========================== */
 
-    .dashboard {
+@media (max-width:1440px) and (min-width:1201px){
+
+    .dashboard{
 
         grid-template-columns:
+            22%
+            50%
+            28%;
 
-            1fr;
+        gap:18px;
+
+        padding:18px;
+
+        height:calc(100vh - 95px);
 
     }
 
@@ -448,21 +451,57 @@ button:disabled {
 
     .middle-panel,
 
-    .right-panel {
+    .right-panel{
 
-        width: 100%;
+        padding:20px;
 
     }
 
 }
 
-@media (max-width: 768px) {
+/* ===========================
+   SMALL LAPTOP
+=========================== */
 
-    .dashboard {
+@media (max-width:1200px){
 
-        padding: 18px;
+    .dashboard{
 
-        gap: 20px;
+        grid-template-columns:1fr;
+
+        height:auto;
+
+    }
+
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:992px){
+
+    .dashboard{
+
+        padding:20px;
+
+        gap:18px;
+
+    }
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:768px){
+
+    .dashboard{
+
+        padding:16px;
+
+        gap:16px;
 
     }
 
@@ -470,11 +509,11 @@ button:disabled {
 
     .middle-panel,
 
-    .right-panel {
+    .right-panel{
 
-        padding: 20px;
+        padding:18px;
 
-        border-radius: 16px;
+        border-radius:16px;
 
     }
 

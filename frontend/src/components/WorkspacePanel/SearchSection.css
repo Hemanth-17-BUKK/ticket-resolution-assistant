@@ -165,7 +165,63 @@
     transform: scale(.98);
 
 }
+/* ==========================================================
+   LARGE LAPTOP
+========================================================== */
 
+@media (max-width:1600px){
+
+    .search-section{
+
+        gap:16px;
+
+    }
+
+}
+
+/* ==========================================================
+   14" LAPTOP
+========================================================== */
+
+@media (max-width:1440px) and (min-width:1201px){
+
+    .search-section{
+
+        gap:14px;
+
+    }
+
+    .search-title{
+
+        font-size:20px;
+
+        padding-bottom:12px;
+
+    }
+
+    .search-row{
+
+        gap:12px;
+
+    }
+
+    .search-input{
+
+        height:48px;
+
+        font-size:13px;
+
+    }
+
+    .search-button{
+
+        width:110px;
+
+        font-size:13px;
+
+    }
+
+}
 @media (max-width: 768px) {
 
     .search-row {
