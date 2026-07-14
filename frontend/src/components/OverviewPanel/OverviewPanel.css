@@ -173,10 +173,10 @@
 }
 
 /* ==========================================================
-   PRIMARY LAPTOP (942 × 690)
+   LARGE LAPTOP (15" / 16")
 ========================================================== */
 
-@media (max-width:1024px) and (min-width:901px){
+@media (max-width:1600px) and (min-width:1441px){
 
     .overview-title{
 
@@ -190,7 +190,7 @@
 
     .overview-cards{
 
-        width:88%;
+        width:90%;
 
     }
 
@@ -215,10 +215,10 @@
 }
 
 /* ==========================================================
-   COMPACT LAPTOP (725 × 632)
+   14" LAPTOP
 ========================================================== */
 
-@media (max-width:900px) and (min-height:601px){
+@media (max-width:1440px) and (min-width:1201px){
 
     .overview-title{
 
@@ -259,10 +259,11 @@
 }
 
 /* ==========================================================
-   COMPACT LAPTOP + TASKBAR (725 × 585)
+   SHORT VIEWPORT
+   (14"/15" Laptop + Taskbar)
 ========================================================== */
 
-@media (max-width:900px) and (max-height:600px){
+@media (max-width:1440px) and (max-height:600px){
 
     .overview-title{
 
@@ -306,7 +307,7 @@
    TABLET
 ========================================================== */
 
-@media (max-width:768px){
+@media (max-width:1100px){
 
     .overview-cards{
 
@@ -320,11 +321,11 @@
    MOBILE
 ========================================================== */
 
-@media (max-width:576px){
+@media (max-width:768px){
 
     .overview-title{
 
-        font-size:18px;
+        font-size:20px;
 
     }
 
