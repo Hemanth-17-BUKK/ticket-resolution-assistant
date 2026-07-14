@@ -901,3 +901,32 @@
     }
 
 }
+/* ==========================================================
+   SHORT VIEWPORT (15" / 14" LAPTOP)
+========================================================== */
+
+@media (max-height:850px){
+
+    .resolution-workspace{
+
+        padding:12px;
+
+        gap:10px;
+
+    }
+
+    .resolution-field textarea{
+
+        height:100px;
+
+    }
+
+    .resolution-actions button,
+
+    .resolution-resolve{
+
+        height:40px;
+
+    }
+
+}

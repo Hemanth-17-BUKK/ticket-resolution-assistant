@@ -426,6 +426,8 @@ button:disabled {
 
 }
 
+
+
 /* ===========================
    14" LAPTOP
 =========================== */
@@ -514,6 +516,42 @@ button:disabled {
         padding:18px;
 
         border-radius:16px;
+
+    }
+
+}
+
+/* ==========================================================
+   SHORT VIEWPORT (15" / 14" LAPTOP WITH TASKBAR)
+========================================================== */
+
+@media (max-height:850px){
+
+    .dashboard{
+
+        padding:20px;
+
+        gap:20px;
+
+        height:calc(100vh - 95px);
+
+    }
+
+    .left-panel{
+
+        padding:20px;
+
+    }
+
+    .middle-panel{
+
+        padding:20px;
+
+    }
+
+    .right-panel{
+
+        padding:20px;
 
     }
 
