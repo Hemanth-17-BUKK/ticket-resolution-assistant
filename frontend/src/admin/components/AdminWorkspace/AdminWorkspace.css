@@ -107,28 +107,27 @@
     .admin-workspace{
 
         grid-template-columns:
-            29%
-            31%
-            40%;
+            30%
+            35%
+            35%;
 
         gap:16px;
 
     }
 
 }
-
 /* ==========================================================
    14" LAPTOP
 ========================================================== */
 
-@media (max-width:1440px) and (min-width:1201px){
+@media (max-width:1400px){
 
     .admin-workspace{
 
         grid-template-columns:
             30%
-            30%
-            40%;
+            35%
+            35%;
 
         gap:14px;
 
