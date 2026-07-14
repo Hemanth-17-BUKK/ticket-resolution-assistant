@@ -408,7 +408,7 @@
 
     flex:1;
 
-    min-height:140px;
+    min-height:0    ;
 
     overflow:auto;
 
@@ -869,43 +869,20 @@
 }
 
 /* ==========================================================
-   SHORT VIEWPORT
-   (Taskbar Visible)
+   SHORT VIEWPORT (Taskbar Visible)
 ========================================================== */
 
 @media (max-width:1440px) and (max-height:600px){
-
-    .ticket-details-header{
-
-        padding:10px 14px;
-
-        gap:6px;
-
-    }
-
-    .ticket-title{
-
-        font-size:18px;
-
-    }
 
     .ticket-details-content{
 
         padding:10px 14px;
 
-        gap:6px;
+        gap:8px;
 
-    }
+        overflow-y:auto;
 
-    .ticket-meta{
-
-        gap:6px;
-
-    }
-
-    .ticket-meta-card{
-
-        padding:7px 9px;
+        overflow-x:hidden;
 
     }
 
@@ -913,41 +890,45 @@
 
         gap:4px;
 
-    }
-
-    .ticket-section h4{
-
-        font-size:12px;
+        flex-shrink:0;
 
     }
 
     .ticket-message{
 
-        padding:8px;
+        padding:8px 10px;
 
-        font-size:13px;
+        min-height:auto;
+
+    }
+
+    .ticket-response-section{
+
+        flex:1;
+
+        min-height:120px;
+
+        display:flex;
+
+        flex-direction:column;
 
     }
 
     .ticket-response{
 
-        min-height:85px;
+        flex:1;
 
-        padding:8px;
+        min-height:0;
 
-        font-size:13px;
+        padding:10px;
+
+        overflow:auto;
 
     }
 
     .ticket-details-actions{
 
-        padding:10px;
-
-    }
-
-    .raise-ticket-button{
-
-        height:40px;
+        padding:10px 14px;
 
     }
 
