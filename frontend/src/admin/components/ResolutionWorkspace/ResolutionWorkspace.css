@@ -744,37 +744,69 @@
 
     .resolution-workspace{
 
-        padding:14px;
+        padding:12px;
 
-        gap:12px;
+        gap:10px;
 
     }
 
     .resolution-header{
 
-        padding-bottom:10px;
+        padding-bottom:8px;
 
     }
 
     .resolution-header h2{
 
-        font-size:17px;
+        font-size:16px;
+
+    }
+
+    .resolution-header span{
+
+        font-size:10px;
+
+        padding:4px 10px;
+
+    }
+
+    .resolution-field label{
+
+        font-size:12px;
 
     }
 
     .resolution-field textarea{
 
-        height:120px;
+        height:105px;
 
-        padding:12px;
+        padding:10px;
 
         font-size:13px;
+
+        line-height:1.5;
+
+    }
+
+    .resolution-section{
+
+        gap:10px;
+
+        padding-top:10px;
 
     }
 
     .resolution-section h3{
 
-        font-size:15px;
+        font-size:14px;
+
+        padding-bottom:8px;
+
+    }
+
+    .resolution-actions{
+
+        gap:10px;
 
     }
 
@@ -782,21 +814,27 @@
 
     .resolution-resolve{
 
-        height:42px;
+        height:40px;
 
         font-size:13px;
 
     }
 
+    .activity-section{
+
+        gap:12px;
+
+    }
+
     .activity-item{
 
-        min-width:110px;
+        min-width:100px;
 
     }
 
     .activity-item:not(:last-child) .activity-line::after{
 
-        width:98px;
+        width:88px;
 
     }
 

@@ -27,7 +27,25 @@
     box-shadow:
         0 8px 24px rgba(15,23,42,.05);
 
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scrollbar-width:thin;
+    scrollbar-color:#cbd5e1 transparent;
+
+}
+
+.ticket-form::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.ticket-form::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
 
 }
 
@@ -504,7 +522,7 @@
 
         padding:10px;
 
-        gap:8px;
+        gap:6px;
 
     }
 
@@ -514,8 +532,61 @@
 
     }
 
-}
+    .ticket-form-title{
 
+        font-size:16px;
+
+    }
+
+    .ticket-form-field{
+
+        gap:3px;
+
+    }
+
+    .ticket-form-field input{
+
+        height:38px;
+
+    }
+
+    .ticket-form-field textarea{
+
+        height:76px;
+
+        min-height:76px;
+
+        max-height:76px;
+
+    }
+
+    .ticket-upload-area{
+
+        min-height:52px;
+
+        padding:6px;
+
+    }
+
+    .ticket-upload-title{
+
+        font-size:11px;
+
+    }
+
+    .ticket-upload-subtitle{
+
+        font-size:9px;
+
+    }
+
+    .ticket-form-submit{
+
+        height:42px;
+
+    }
+
+}
 /* ==========================================================
    14" LAPTOP
 ========================================================== */
