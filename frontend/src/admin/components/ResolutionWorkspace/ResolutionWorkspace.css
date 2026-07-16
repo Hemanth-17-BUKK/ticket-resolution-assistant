@@ -30,11 +30,11 @@
 
     overflow-x:hidden;
 
-    padding:18px;
-
-    gap:16px;
-
     background:#ffffff;
+
+    padding:28px;
+
+    gap:24px;
 
     scrollbar-width:thin;
 
@@ -70,11 +70,13 @@
 
     align-items:center;
 
-    height:100%;
+    flex:1;
 
     text-align:center;
 
     color:#64748b;
+
+    padding:32px;
 
 }
 
@@ -90,11 +92,11 @@
 
 .resolution-empty p{
 
-    margin-top:10px;
+    margin-top:14px;
 
-    max-width:320px;
+    max-width:340px;
 
-    line-height:1.6;
+    line-height:1.7;
 
 }
 
@@ -110,9 +112,9 @@
 
     align-items:center;
 
-    gap:12px;
+    gap:20px;
 
-    padding-bottom:12px;
+    padding:0 4px 18px;
 
     border-bottom:1px solid #e5e7eb;
 
@@ -122,7 +124,7 @@
 
     margin:0;
 
-    font-size:18px;
+    font-size:20px;
 
     font-weight:800;
 
@@ -134,7 +136,7 @@
 
     flex-shrink:0;
 
-    padding:5px 12px;
+    padding:7px 16px;
 
     border-radius:999px;
 
@@ -142,7 +144,7 @@
 
     color:#2563eb;
 
-    font-size:11px;
+    font-size:12px;
 
     font-weight:700;
 
@@ -153,16 +155,17 @@
 ========================================================== */
 
 .resolution-success,
-
 .resolution-error{
 
-    padding:10px 14px;
+    padding:14px 18px;
 
-    border-radius:10px;
+    border-radius:12px;
 
     font-size:13px;
 
     font-weight:600;
+
+    margin:0 2px;
 
 }
 
@@ -196,11 +199,11 @@
 
     flex-direction:column;
 
-    gap:8px;
+    gap:10px;
 
     width:100%;
 
-    max-width:100%;
+    padding:0 2px;
 
 }
 
@@ -212,6 +215,8 @@
 
     color:#1e293b;
 
+    padding-left:2px;
+
 }
 
 .resolution-field textarea{
@@ -222,15 +227,15 @@
 
     max-width:100%;
 
-    height:140px;
+    height:160px;
 
     resize:none;
 
-    padding:14px;
+    padding:18px;
 
     border:1px solid #dbeafe;
 
-    border-radius:12px;
+    border-radius:14px;
 
     background:#ffffff;
 
@@ -238,7 +243,7 @@
 
     font-family:inherit;
 
-    line-height:1.65;
+    line-height:1.75;
 
     color:#0f172a;
 
@@ -282,9 +287,9 @@
 
     flex-direction:column;
 
-    gap:12px;
+    gap:18px;
 
-    padding-top:12px;
+    padding:18px 2px 0;
 
     border-top:1px solid #edf2f7;
 
@@ -298,13 +303,13 @@
 
     margin:0;
 
-    padding-bottom:10px;
+    padding-bottom:12px;
 
     border-bottom:2px solid #dbeafe;
 
     color:#2563eb;
 
-    font-size:16px;
+    font-size:17px;
 
     font-weight:700;
 
@@ -324,7 +329,9 @@
 
     width:100%;
 
-    gap:12px;
+    gap:18px;
+
+    padding:4px 2px 2px;
 
 }
 
@@ -332,11 +339,11 @@
 
     width:100%;
 
-    height:44px;
+    height:48px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
     font-size:14px;
 
@@ -394,9 +401,11 @@
 
     grid-template-columns:repeat(2,minmax(0,1fr));
 
-    gap:10px;
+    gap:16px;
 
     width:100%;
+
+    padding:2px;
 
 }
 
@@ -427,6 +436,7 @@
     background:#dc2626;
 
 }
+
 /* ==========================================================
    RESOLVE BUTTON
 ========================================================== */
@@ -435,11 +445,11 @@
 
     width:100%;
 
-    height:44px;
+    height:48px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
     background:#2563eb;
 
@@ -452,11 +462,15 @@
     cursor:pointer;
 
     transition:
+
         background .25s ease,
+
         transform .2s ease,
+
         box-shadow .25s ease;
 
     box-shadow:
+
         0 4px 12px rgba(37,99,235,.20);
 
 }
@@ -468,6 +482,7 @@
     transform:translateY(-2px);
 
     box-shadow:
+
         0 8px 18px rgba(37,99,235,.28);
 
 }
@@ -491,7 +506,6 @@
     opacity:.75;
 
 }
-
 /* ==========================================================
    RECENT ACTIVITY
 ========================================================== */
@@ -502,7 +516,9 @@
 
     flex-direction:column;
 
-    gap:16px;
+    gap:22px;
+
+    padding:6px 2px 4px;
 
 }
 
@@ -518,7 +534,7 @@
 
     overflow-y:hidden;
 
-    padding:8px 0 6px;
+    padding:12px 8px 12px;
 
     scrollbar-width:none;
 
@@ -540,21 +556,23 @@
 
     align-items:center;
 
-    min-width:130px;
+    justify-content:flex-start;
+
+    min-width:145px;
 
     flex-shrink:0;
 
     text-align:center;
 
-    padding:0 8px;
+    padding:0 14px;
 
 }
 
 .activity-line{
 
-    width:16px;
+    width:18px;
 
-    height:16px;
+    height:18px;
 
     border-radius:50%;
 
@@ -562,7 +580,7 @@
 
     box-shadow:0 0 0 2px currentColor;
 
-    margin-bottom:14px;
+    margin-bottom:16px;
 
     position:relative;
 
@@ -580,7 +598,7 @@
 
     transform:translateY(-50%);
 
-    width:118px;
+    width:130px;
 
     height:3px;
 
@@ -594,7 +612,9 @@
 
     flex-direction:column;
 
-    gap:4px;
+    align-items:center;
+
+    gap:6px;
 
     width:100%;
 
@@ -608,13 +628,15 @@
 
     color:#0f172a;
 
+    line-height:1.4;
+
 }
 
 .activity-date{
 
     font-size:11px;
 
-    line-height:1.5;
+    line-height:1.6;
 
     color:#64748b;
 
@@ -622,13 +644,14 @@
 
 .activity-empty{
 
-    padding:20px;
+    padding:28px;
 
     text-align:center;
 
     color:#94a3b8;
 
 }
+
 /* ==========================================================
    TIMELINE COLORS
 ========================================================== */
@@ -646,7 +669,6 @@
 }
 
 .activity-item.PENDING,
-
 .activity-item.PENDING_APPROVAL{
 
     color:#f59e0b;
@@ -654,7 +676,6 @@
 }
 
 .activity-item.PENDING .activity-line,
-
 .activity-item.PENDING_APPROVAL .activity-line{
 
     background:#f59e0b;

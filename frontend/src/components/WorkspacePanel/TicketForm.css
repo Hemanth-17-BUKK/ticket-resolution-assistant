@@ -772,3 +772,96 @@
     }
 
 }
+
+/* ==========================================================
+   DEFAULT LAPTOP (942 × 690)
+========================================================== */
+
+@media (min-width:900px) and (max-width:980px)
+       and (min-height:660px) and (max-height:720px){
+
+    .ticket-form{
+
+        padding:16px;
+
+        gap:6px;
+
+    }
+
+    .ticket-form-header{
+
+        padding-bottom:6px;
+
+    }
+
+    .ticket-form-title{
+
+        font-size:18px;
+
+    }
+
+    .ticket-form-field{
+
+        gap:2px;
+
+    }
+
+    .ticket-form-field input{
+
+        height:40px;
+
+    }
+
+    .ticket-form-field textarea{
+
+        height:95px;
+
+        min-height:95px;
+
+        max-height:95px;
+
+    }
+
+    .ticket-upload-area{
+
+        min-height:72px;
+
+        padding:10px;
+
+    }
+
+    .ticket-upload-title{
+
+        font-size:12px;
+
+    }
+
+    .ticket-upload-subtitle{
+
+        font-size:10px;
+
+    }
+
+    .ticket-upload-info{
+
+        margin-top:2px;
+
+    }
+
+    .ticket-form-actions{
+
+        margin-top:auto;
+
+        padding-top:10px;
+
+    }
+
+    .ticket-form-submit{
+
+        width:240px;
+
+        height:44px;
+
+    }
+
+}

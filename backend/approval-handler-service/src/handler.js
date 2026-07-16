@@ -262,58 +262,79 @@ Return ONLY the response text.
         //     finalReply
         // );
         
-        /* =====================================
+ /* =====================================
    Generate Final Reply
 ===================================== */
 
-let finalReply;
+const body =
+    event.body
+        ? JSON.parse(event.body)
+        : {};
 
-if (ticket.draftReply) {
+const draftToUse =
+    body.editedDraftReply ||
+    ticket.draftReply;
 
-    console.log(
-        "Using saved draft reply."
+const finalPrompt = `
+You are generating the FINAL customer response.
+
+Ticket Subject:
+${ticket.subject}
+
+Customer Message:
+${ticket.message}
+
+AI Draft:
+${draftToUse}
+
+Decision:
+${isApprove ? "APPROVED" : "REJECTED"}
+
+Instructions:
+
+- Rewrite the draft into a polished customer-facing response.
+- Use the draft as guidance.
+- If the administrator edited the draft, use the edited version.
+- Maximum 2 sentences.
+- Maximum 30 words.
+- Plain text only.
+- No greetings.
+- No sign-off.
+- No markdown.
+- No bullet points.
+- No placeholders.
+- Return ONLY the response.
+`;
+
+const aiResponse =
+    await bedrockClient.send(
+        new ConverseCommand({
+
+            modelId:
+                process.env.MODEL_ID,
+
+            messages: [
+                {
+                    role: "user",
+
+                    content: [
+                        {
+                            text: finalPrompt
+                        }
+                    ]
+                }
+            ]
+        })
     );
 
-    finalReply = ticket.draftReply;
-
-}
-else {
-
-    console.log(
-        "No saved draft found. Generating reply using Bedrock."
-    );
-
-    const aiResponse =
-        await bedrockClient.send(
-            new ConverseCommand({
-
-                modelId:
-                    process.env.MODEL_ID,
-
-                messages: [
-                    {
-                        role: "user",
-
-                        content: [
-                            {
-                                text: prompt
-                            }
-                        ]
-                    }
-                ]
-            })
-        );
-
-    finalReply =
-        aiResponse.output
-            .message
-            .content[0]
-            .text
-            .replace(/\n/g, " ")
-            .replace(/\s+/g, " ")
-            .trim();
-
-}
+const finalReply =
+    aiResponse.output
+        .message
+        .content[0]
+        .text
+        .replace(/\n/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
 
 console.log(
     "Final Reply:",
