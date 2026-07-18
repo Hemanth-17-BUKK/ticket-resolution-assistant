@@ -150,42 +150,31 @@ function Dashboard() {
     const stats = useMemo(() => ({
 
         total:
-
             tickets.length,
 
         open:
-
             tickets.filter(
-
                 ticket =>
-
                     ticket.status ===
-
                     "OPEN"
-
             ).length,
 
         pending:
-
             tickets.filter(
-
                 ticket =>
-
                     ticket.status ===
-
                     "PENDING_APPROVAL"
-
             ).length,
 
         resolved:
-
             tickets.filter(
-
                 ticket =>
 
                     ticket.status ===
+                        "RESOLVED" ||
 
-                    "RESOLVED"
+                    ticket.status ===
+                        "REJECTED"
 
             ).length
 

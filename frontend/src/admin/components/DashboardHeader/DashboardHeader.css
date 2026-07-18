@@ -162,6 +162,45 @@
     transform:rotate(180deg);
 
 }
+
+
+.dashboard-header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+.analytics-button {
+
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: white;
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.analytics-button:hover {
+
+    transform: translateY(-2px);
+
+}
+
 /* ==========================================================
    LARGE LAPTOP (1600px and below)
 ========================================================== */

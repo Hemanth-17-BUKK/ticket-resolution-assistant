@@ -310,7 +310,14 @@ exports.handler = async (event) => {
                 switch (ticket.priority) {
 
                     case "HIGH":
-                        dashboard.highPriorityTickets++;
+
+                        if (
+                            ticket.status === "OPEN" ||
+                            ticket.status === "PENDING_APPROVAL"
+                        ) {
+                            dashboard.highPriorityTickets++;
+                        }
+
                         break;
 
                     case "MEDIUM":

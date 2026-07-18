@@ -350,9 +350,21 @@ Return ONLY valid JSON.
   "category": "",
   "priority": "",
   "sentiment": "",
+  "confidence": 0,
   "draftReply": "",
   "toolRequired": false
 }
+
+Rules:
+
+- confidence must be an integer between 0 and 100.
+- confidence represents your overall confidence in the classification.
+- Consider:
+  - customer message
+  - attachment content
+  - retrieved knowledge base
+- Higher confidence means you are more certain about category, priority and sentiment.
+- Return ONLY JSON.
 `;
 
             // =====================================
@@ -429,6 +441,7 @@ Return ONLY valid JSON.
                         category = :category,
                         priority = :priority,
                         sentiment = :sentiment,
+                        aiConfidence = :aiConfidence,
                         draftReply = :draftReply,
                         updatedAt = :updatedAt
                     `,
@@ -443,6 +456,9 @@ Return ONLY valid JSON.
 
                         ":sentiment":
                             aiResult.sentiment,
+
+                        ":aiConfidence":
+                            aiResult.confidence,
 
                         ":draftReply":
                             aiResult.draftReply,

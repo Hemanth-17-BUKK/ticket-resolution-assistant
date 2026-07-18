@@ -82,17 +82,17 @@ function DashboardStats({
 
         {
 
-            id: "priority",
+            id: "rejected",
 
-            title: "High Priority",
+            title: "Rejected Tickets",
 
             value:
 
-                stats?.highPriorityTickets || 0,
+                stats?.rejectedTickets || 0,
 
             description:
 
-                "Requires Attention",
+                "Requests Declined",
 
             className: "red"
 

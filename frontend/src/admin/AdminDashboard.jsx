@@ -20,6 +20,8 @@ import AdminWorkspace from "./components/AdminWorkspace/AdminWorkspace";
 
 import adminService from "./services/adminService";
 
+import AnalyticsDashboard from "./components/AnalyticsDashboard";
+
 import {
 
     getUserInfo,
@@ -37,6 +39,8 @@ function AdminDashboard() {
         getUserInfo()
 
     );
+
+    const [showAnalytics, setShowAnalytics] = useState(false);
 
     const [stats, setStats] = useState(null);
 
@@ -389,27 +393,53 @@ return (
 
             onLogout={handleLogout}
 
-        />
+            showAnalytics={showAnalytics}
 
-        <DashboardStats
-
-            stats={stats}
+            setShowAnalytics={setShowAnalytics}
 
         />
 
-        <AdminWorkspace
+        {
 
-            tickets={tickets}
+            showAnalytics ? (
 
-            selectedTicket={selectedTicket}
+                <AnalyticsDashboard
 
-            onSelectTicket={loadTicket}
+                    tickets={tickets}
 
-            refreshDashboard={refreshDashboard}
+                    stats={stats}
 
-            setSelectedTicket={setSelectedTicket}
+                />
 
-        />
+            ) : (
+
+                <>
+
+                    <DashboardStats
+
+                        stats={stats}
+
+                    />
+
+                    <AdminWorkspace
+
+                        tickets={tickets}
+
+                        selectedTicket={selectedTicket}
+
+                        onSelectTicket={loadTicket}
+
+                        refreshDashboard={refreshDashboard}
+
+                        setSelectedTicket={setSelectedTicket}
+
+                    />
+
+                </>
+
+            )
+
+        }
 
     </div>
 

@@ -12,7 +12,11 @@ function DashboardHeader({
 
     adminTitle,
 
-    onLogout
+    onLogout,
+
+    showAnalytics,
+
+    setShowAnalytics
 
 }) {
 
@@ -80,89 +84,121 @@ function DashboardHeader({
 
             </h1>
 
-            <div
+           <div className="dashboard-header-actions">
 
-                className="admin-profile-wrapper"
+    <button
 
-                ref={dropdownRef}
+        className="analytics-button"
 
-            >
+        onClick={() =>
 
-                <button
+            setShowAnalytics(
 
-                    className="admin-profile-button"
+                !showAnalytics
 
-                    onClick={() =>
+            )
 
-                        setOpen(
+        }
 
-                            !open
+    >
 
-                        )
+        {
+
+            showAnalytics
+
+                ? "Home"
+
+                : "Analytics"
+
+        }
+
+    </button>
+
+    <div
+
+        className="admin-profile-wrapper"
+
+        ref={dropdownRef}
+
+    >
+
+        <button
+
+            className="admin-profile-button"
+
+            onClick={() =>
+
+                setOpen(
+
+                    !open
+
+                )
+
+            }
+
+        >
+
+            <div className="admin-avatar">
+
+                {admin.initials}
+
+            </div>
+
+            <span>
+
+                ADMIN
+
+            </span>
+
+            <ChevronDown
+
+                size={18}
+
+            />
+
+        </button>
+
+        {
+
+            open && (
+
+                <AdminProfileDropdown
+
+                    initials={
+
+                        admin.initials
 
                     }
 
-                >
+                    email={
 
-                    <div className="admin-avatar">
+                        admin.email
 
-                        {admin.initials}
+                    }
 
-                    </div>
+                    displayName={
 
-                    <span>
+                        adminTitle ||
 
-                        ADMIN
+                        "System Administrator"
 
-                    </span>
+                    }
 
-                    <ChevronDown
+                    logout={
 
-                        size={18}
+                        onLogout
 
-                    />
+                    }
 
-                </button>
+                />
 
-                {
+            )
 
-                    open && (
+        }
 
-                        <AdminProfileDropdown
+    </div>
 
-                            initials={
-
-                                admin.initials
-
-                            }
-
-                            email={
-
-                                admin.email
-
-                            }
-
-                            displayName={
-
-                                adminTitle ||
-
-                                "System Administrator"
-
-                            }
-
-                            logout={
-
-                                onLogout
-
-                            }
-
-                        />
-
-                    )
-
-                }
-
-            </div>
+</div>
 
         </header>
 

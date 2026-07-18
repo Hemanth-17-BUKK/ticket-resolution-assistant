@@ -1,0 +1,447 @@
+.recent-table-wrapper {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* ========================================================= */
+/* Header */
+/* ========================================================= */
+
+.recent-table-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+.recent-table-header h3 {
+
+    margin: 0;
+
+    font-size: 1.15rem;
+
+    font-weight: 700;
+
+    color: #111827;
+
+}
+
+.recent-table-header span {
+
+    font-size: .9rem;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+}
+
+/* ========================================================= */
+/* Table */
+/* ========================================================= */
+
+.recent-table {
+
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+}
+
+/* ========================================================= */
+
+.recent-table thead {
+
+    background: #f8fafc;
+
+}
+
+.recent-table thead th {
+
+    padding: 16px 18px;
+
+    text-align: left;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    letter-spacing: .04em;
+
+    text-transform: uppercase;
+
+    color: #64748b;
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+/* ========================================================= */
+
+.recent-table tbody td {
+
+    padding: 18px;
+
+    font-size: .92rem;
+
+    color: #334155;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    transition: background .2s ease;
+
+}
+
+.recent-table tbody tr {
+
+    transition: all .2s ease;
+
+}
+
+.recent-table tbody tr:hover {
+
+    background: #f8fbff;
+
+    cursor: pointer;
+
+}
+
+.recent-table tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+/* ========================================================= */
+/* Ticket ID */
+/* ========================================================= */
+
+.ticket-id {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 8px;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    font-family: Consolas, monospace;
+
+}
+
+/* ========================================================= */
+/* Customer */
+/* ========================================================= */
+
+.customer {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+.customer-name {
+
+    font-weight: 600;
+
+    color: #1e293b;
+
+}
+
+.customer-email {
+
+    font-size: .78rem;
+
+    color: #94a3b8;
+
+}
+
+/* ========================================================= */
+/* Badges */
+/* ========================================================= */
+
+.badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: .76rem;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+/* ========================================================= */
+/* Priority */
+/* ========================================================= */
+
+.priority.low {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.priority.medium {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.priority.high {
+
+    background: #ffedd5;
+
+    color: #c2410c;
+
+}
+
+.priority.critical {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+/* ========================================================= */
+/* Status */
+/* ========================================================= */
+
+.status.open {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+}
+
+.status.pending_approval {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.status.resolved {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.status.rejected {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+}
+
+/* ========================================================= */
+/* AI */
+/* ========================================================= */
+
+.ai.generated {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+}
+
+.ai.waiting {
+
+    background: #fef3c7;
+
+    color: #92400e;
+
+}
+
+.ai.manual {
+
+    background: #e2e8f0;
+
+    color: #475569;
+
+}
+
+/* ========================================================= */
+/* Empty State */
+/* ========================================================= */
+
+.recent-empty {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 10px;
+
+}
+
+.empty-icon {
+
+    font-size: 3rem;
+
+}
+
+.recent-empty h3 {
+
+    margin: 0;
+
+    color: #1e293b;
+
+}
+
+.recent-empty p {
+
+    margin: 0;
+
+    color: #94a3b8;
+
+}
+
+/* ========================================================= */
+/* Scroll */
+/* ========================================================= */
+
+.recent-table-wrapper {
+
+    overflow-x: auto;
+
+}
+
+.recent-table-wrapper::-webkit-scrollbar {
+
+    height: 8px;
+
+}
+
+.recent-table-wrapper::-webkit-scrollbar-thumb {
+
+    background: #cbd5e1;
+
+    border-radius: 999px;
+
+}
+.badge.confidence{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:2px;
+
+    min-width:90px;
+
+    padding:8px 12px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    line-height:1.1;
+
+}
+
+.badge.confidence small{
+
+    font-size:.68rem;
+
+    font-weight:600;
+
+    opacity:.85;
+
+    letter-spacing:.2px;
+
+}
+/* ========================================================= */
+/* Responsive */
+/* ========================================================= */
+
+@media (max-width:1400px){
+
+    .recent-table thead th,
+    .recent-table tbody td{
+
+        padding:14px;
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .recent-table{
+
+        min-width:1100px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .recent-table{
+
+        min-width:900px;
+
+    }
+
+}
