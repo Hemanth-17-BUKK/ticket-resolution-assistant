@@ -13,123 +13,136 @@ ChartJS.register(
     Tooltip
 );
 
-function AIAccuracyChart({ stats }) {
+function AIAccuracyChart({ tickets = [] }) {
 
-    const resolved =
-        stats?.resolvedTickets || 0;
+    const confidenceTickets = tickets.filter(ticket =>
+        typeof ticket.aiConfidence === "number" &&
+        !Number.isNaN(ticket.aiConfidence)
+    );
 
-    const rejected =
-        stats?.rejectedTickets || 0;
+    const totalEvaluated = confidenceTickets.length;
 
-    const total =
-        resolved + rejected;
-
-    const accuracy =
-        total === 0
+    const averageConfidence =
+        totalEvaluated === 0
             ? 0
-            : Math.round(
-                (resolved / total) * 100
+            : Number(
+                (
+                    confidenceTickets.reduce(
+                        (sum, ticket) => sum + ticket.aiConfidence,
+                        0
+                    ) / totalEvaluated
+                ).toFixed(1)
             );
+
+    const confidenceLevels = {
+        veryHigh: 0,
+        high: 0,
+        moderate: 0,
+        low: 0
+    };
+
+    confidenceTickets.forEach(ticket => {
+
+        const confidence = ticket.aiConfidence;
+
+        if (confidence >= 90) {
+
+            confidenceLevels.veryHigh++;
+
+        } else if (confidence >= 75) {
+
+            confidenceLevels.high++;
+
+        } else if (confidence >= 60) {
+
+            confidenceLevels.moderate++;
+
+        } else {
+
+            confidenceLevels.low++;
+
+        }
+
+    });
 
     const data = {
 
-    labels: [
+        datasets: [
 
-        "Resolved",
+            {
 
-        "Rejected"
+                data: [
 
-    ],
+                    averageConfidence,
+                    100 - averageConfidence
 
-    datasets: [
+                ],
 
-        {
+                backgroundColor: [
 
-            data: [
+                    "#2563eb",
+                    "#e5e7eb"
 
-                resolved,
+                ],
 
-                rejected
+                hoverBackgroundColor: [
 
-            ],
+                    "#2563eb",
+                    "#e5e7eb"
 
-            backgroundColor: [
+                ],
 
-                "#16a34a",
+                borderWidth: 0,
 
-                "#f70808"
+                cutout: "78%"
 
-            ],
+            }
 
-            hoverBackgroundColor: [
+        ]
 
-                "#15803d",
-
-                "#f70808"
-
-            ],
-
-            borderColor: "#ffffff",
-
-            borderWidth: 4,
-
-            borderRadius: 0,
-
-            spacing: 0,
-
-            hoverOffset: 10
-
-        }
-
-    ]
-
-};
+    };
 
     const options = {
 
-    responsive: true,
+        responsive: true,
 
-    maintainAspectRatio: false,
+        maintainAspectRatio: false,
 
-    cutout: "76%",
+        animation: {
 
-    animation: {
+            animateRotate: true,
 
-        animateRotate: true,
+            duration: 1000,
 
-        duration: 1200,
-
-        easing: "easeOutQuart"
-
-    },
-
-    plugins: {
-
-        legend: {
-
-            display: false
+            easing: "easeOutQuart"
 
         },
 
-        tooltip: {
+        plugins: {
 
-            backgroundColor: "#0f172a",
+            legend: {
 
-            titleColor: "#ffffff",
+                display: false
 
-            bodyColor: "#ffffff",
+            },
 
-            padding: 14,
+            tooltip: {
 
-            cornerRadius: 12,
+                callbacks: {
 
-            displayColors: true
+                    label() {
+
+                        return `Average AI Confidence : ${averageConfidence}%`;
+
+                    }
+
+                }
+
+            }
 
         }
 
-    }
-
-};
+    };
 
     return (
 
@@ -149,59 +162,121 @@ function AIAccuracyChart({ stats }) {
 
                     <h2>
 
-                        {accuracy}%
+                        {averageConfidence}%
 
                     </h2>
 
-                    <span>
-
-                        Accuracy
-
-                    </span>
-
                 </div>
 
             </div>
 
-            <div className="accuracy-legend">
+            <div className="confidence-grid">
 
-                <div className="legend-item">
+    <div className="confidence-card very-high">
 
-                    <span className="legend-dot resolved"></span>
+        <div className="confidence-left">
 
-                    <span>
+            <div className="confidence-title">
 
-                        Resolved
-
-                    </span>
-
-                    <strong>
-
-                        {resolved}
-
-                    </strong>
-
-                </div>
-
-                <div className="legend-item">
-
-                    <span className="legend-dot rejected"></span>
-
-                    <span>
-
-                        Rejected
-
-                    </span>
-
-                    <strong>
-
-                        {rejected}
-
-                    </strong>
-
-                </div>
+                Very High
 
             </div>
+
+            <span>
+
+                90 – 100%
+
+            </span>
+
+        </div>
+
+        <strong>
+
+            {confidenceLevels.veryHigh}
+
+        </strong>
+
+    </div>
+
+    <div className="confidence-card high">
+
+        <div className="confidence-left">
+
+            <div className="confidence-title">
+
+                High
+
+            </div>
+
+            <span>
+
+                75 – 89%
+
+            </span>
+
+        </div>
+
+        <strong>
+
+            {confidenceLevels.high}
+
+        </strong>
+
+    </div>
+
+    <div className="confidence-card moderate">
+
+        <div className="confidence-left">
+
+            <div className="confidence-title">
+
+                Moderate
+
+            </div>
+
+            <span>
+
+                60 – 74%
+
+            </span>
+
+        </div>
+
+        <strong>
+
+            {confidenceLevels.moderate}
+
+        </strong>
+
+    </div>
+
+    <div className="confidence-card low">
+
+        <div className="confidence-left">
+
+            <div className="confidence-title">
+
+                Low
+
+            </div>
+
+            <span>
+
+                Below 60%
+
+            </span>
+
+        </div>
+
+        <strong>
+
+            {confidenceLevels.low}
+
+        </strong>
+
+    </div>
+
+</div>
 
         </div>
 

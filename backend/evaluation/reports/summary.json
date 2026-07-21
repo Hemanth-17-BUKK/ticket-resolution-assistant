@@ -1,0 +1,14 @@
+{
+  "totalTickets": 50,
+  "successful": 50,
+  "failed": 0,
+  "successRate": 100,
+  "categoryAccuracy": 28,
+  "priorityAccuracy": 64,
+  "sentimentAccuracy": 82,
+  "averageKeywordMatch": 2.64,
+  "averageConfidence": 90.5,
+  "averageLatency": 6146.18,
+  "highestLatency": 11448,
+  "lowestLatency": 328
+}

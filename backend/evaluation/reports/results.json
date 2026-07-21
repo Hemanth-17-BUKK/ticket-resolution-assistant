@@ -1,0 +1,1510 @@
+[
+  {
+    "ticketId": "TKT-1784625684256",
+    "latency": 3827,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and are currently reviewing the issue with your transaction."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625689727",
+    "latency": 8299,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for contacting us. We have received your ticket regarding the double charge for a single purchase and it is currently under review. We apologize for any inconvenience caused."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625699034",
+    "latency": 7764,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket regarding the money deducted after a failed UPI payment. We are reviewing your issue and will get back to you soon."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625707728",
+    "latency": 7513,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We've received your ticket regarding a duplicate charge and it's under review. We'll get back to you soon."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625715761",
+    "latency": 7522,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We've received your ticket and are reviewing the issue. We'll get back to you soon."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625723701",
+    "latency": 6546,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Dear customer, we have received your ticket regarding the duplicate charge and payment failure. We are reviewing the issue and will get back to you with a resolution shortly."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625730747",
+    "latency": 7349,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We've received your ticket and are reviewing the issue of the double charge for your purchase."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625738484",
+    "latency": 7262,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket regarding a duplicate charge. We're reviewing your issue and will respond shortly."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625746463",
+    "latency": 7166,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Negative",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket regarding the duplicate charge and it is currently under review. We apologize for any inconvenience caused."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625754446",
+    "latency": 7148,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "negative",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "We have received your ticket and your issue is under review. We apologize for the inconvenience."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625762436",
+    "latency": 6505,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "Frustrated",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "We have received your ticket regarding the login issue. We are reviewing your account and will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625769286",
+    "latency": 6165,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for reaching out. We have received your ticket and are currently reviewing your request regarding the locked account. We will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625775868",
+    "latency": 6863,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "Neutral",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for contacting us. We've received your ticket about your locked account and are reviewing it."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625783081",
+    "latency": 6649,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "FRUSTRATED",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for reaching out. We have received your ticket and are reviewing the issue. Please rest assured that we are working to resolve this as quickly as possible."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625790244",
+    "latency": 6452,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for your message. We have received your ticket and it is currently under review. We apologize for any inconvenience this may cause."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625797391",
+    "latency": 7503,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Hi there, we've received your ticket regarding your locked account and are currently reviewing it."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625805212",
+    "latency": 6427,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "Frustrated",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and are reviewing it. We understand the inconvenience and will assist you as soon as possible."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625812613",
+    "latency": 7907,
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "Frustrated",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for reaching out. We've received your ticket and are reviewing it. We'll get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625820970",
+    "latency": 7069,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Hello, we've received your password reset request and it's under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625828366",
+    "latency": 6249,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for your message. We have received your ticket and are reviewing your request to reset your password. We will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625835007",
+    "latency": 9206,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for reaching out. We've received your ticket and are currently reviewing the situation. We'll get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625844604",
+    "latency": 7251,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Hello, we have received your request to reset your password. We are currently reviewing it."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625852444",
+    "latency": 6199,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "Neutral",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Hi there, we've received your request to reset your password. We're currently reviewing it and will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625859003",
+    "latency": 11448,
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "We have received your ticket. Your request is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625871244",
+    "latency": 6214,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "MEDIUM",
+      "sentiment": "Neutral",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for your message. We have received your refund request and it is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625877780",
+    "latency": 8772,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Neutral",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Hi there, we have received your ticket and your refund request is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625887122",
+    "latency": 7165,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Neutral",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "We've received your refund request and it is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625894985",
+    "latency": 5744,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "MEDIUM",
+      "sentiment": "Neutral",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for your message. We have received your ticket and your refund request is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625901075",
+    "latency": 901,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Neutral",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for your message. We have received your refund request and it is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625902607",
+    "latency": 7744,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Neutral",
+      "confidence": 95,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for your message. We have received your refund request and it is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625910774",
+    "latency": 1313,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "Neutral",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for your message. We've received your refund request and it's under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625913123",
+    "latency": 1184,
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket regarding the pending refund and are currently reviewing your request."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625915156",
+    "latency": 6964,
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "SHIPPING",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and are reviewing the status of your order. We will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 33,
+    "matchedKeywords": [
+      "status"
+    ],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625922503",
+    "latency": 9251,
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "SHIPPING",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your request and are currently reviewing your order status."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 33,
+    "matchedKeywords": [
+      "status"
+    ],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625932478",
+    "latency": 328,
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "SHIPPING",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Hi there, we've received your ticket regarding the tracking issue. Your request is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784625934035",
+    "latency": 6403,
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "SHIPPING",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your request and are reviewing the status of your order. We will get back to you with an update shortly."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 33,
+    "matchedKeywords": [
+      "status"
+    ],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784625940788",
+    "latency": 6488,
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "SHIPPING",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and are currently reviewing the status of your order."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 33,
+    "matchedKeywords": [
+      "status"
+    ],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625948081",
+    "latency": 6244,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "PENDING_APPROVAL",
+      "reply": "Thank you for reaching out. We have received your request to change your phone number and it is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625955339",
+    "latency": 6754,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Hi there, we've received your request to update your email. We're currently reviewing it. Thank you for your patience."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625962775",
+    "latency": 6427,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your request to change the phone number and it is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784625969742",
+    "latency": 840,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your request to update your email address and it is currently under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625971552",
+    "latency": 818,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "GENERAL",
+      "priority": "LOW",
+      "sentiment": "neutral",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for your message. We've received your request to change your phone number and it is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625972836",
+    "latency": 5967,
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "GENERAL",
+      "priority": "LOW",
+      "sentiment": "neutral",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "We have received your request to change your phone number. We are reviewing it currently."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784625979585",
+    "latency": 6341,
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 95,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket regarding the app crash and are currently reviewing the issue."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 95
+  },
+  {
+    "ticketId": "TKT-1784625986243",
+    "latency": 6304,
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and are currently reviewing the issue with our technical team."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784625992864",
+    "latency": 6049,
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "Negative",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Dear Customer, we've received your ticket regarding the app crash. We're currently reviewing your issue and will get back to you with a resolution soon."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784625999236",
+    "latency": 6760,
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "confidence": 90,
+      "status": "OPEN",
+      "reply": "Dear customer, we have received your ticket regarding the website error and application crash. We are currently reviewing your issue and will get back to you with a resolution as soon as possible."
+    },
+    "categoryCorrect": true,
+    "priorityCorrect": true,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 90
+  },
+  {
+    "ticketId": "TKT-1784626006532",
+    "latency": 6561,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "neutral",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and your request is under review."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  },
+  {
+    "ticketId": "TKT-1784626013495",
+    "latency": 1007,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "GENERAL",
+      "priority": "LOW",
+      "sentiment": "CONFUSED",
+      "confidence": 60,
+      "status": "OPEN",
+      "reply": "Hi there, we've received your ticket and are reviewing it. We'll get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": false,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 60
+  },
+  {
+    "ticketId": "TKT-1784626015469",
+    "latency": 6477,
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    },
+    "actual": {
+      "category": "AUTHENTICATION",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "confidence": 85,
+      "status": "OPEN",
+      "reply": "Thank you for reaching out. We have received your ticket and it is under review. We will get back to you soon."
+    },
+    "categoryCorrect": false,
+    "priorityCorrect": false,
+    "sentimentCorrect": true,
+    "keywordScore": 0,
+    "matchedKeywords": [],
+    "confidence": 85
+  }
+]

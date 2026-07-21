@@ -1,0 +1,952 @@
+[
+  {
+    "input": {
+      "subject": "Money deducted",
+      "message": "Money was deducted but order wasn't confirmed.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Money deducted",
+      "message": "Charged twice for one purchase.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Money deducted",
+      "message": "UPI payment failed after debit.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Duplicate charge",
+      "message": "Money was deducted but order wasn't confirmed.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Payment failed",
+      "message": "Charged twice for one purchase.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Duplicate charge",
+      "message": "UPI payment failed after debit.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Payment failed",
+      "message": "Charged twice for one purchase.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Duplicate charge",
+      "message": "Money was deducted but order wasn't confirmed.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Duplicate charge",
+      "message": "Money was deducted but order wasn't confirmed.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Money deducted",
+      "message": "Money was deducted but order wasn't confirmed.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-PAY-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Cannot login",
+      "message": "Account locked.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Cannot login",
+      "message": "Account locked.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Account locked",
+      "message": "Account locked.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Cannot login",
+      "message": "Cannot login with correct password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Account locked",
+      "message": "Cannot login with correct password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Account locked",
+      "message": "Account locked.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Login failed",
+      "message": "OTP never arrives.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Cannot login",
+      "message": "Cannot login with correct password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "LOGIN",
+      "priority": "MEDIUM",
+      "sentiment": "NEGATIVE",
+      "tool": "resetPassword",
+      "kbArticle": "KB-LOGIN-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Forgot password",
+      "message": "Forgot my password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Reset password",
+      "message": "Reset link expired.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Forgot password",
+      "message": "Reset link expired.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Reset password",
+      "message": "Forgot my password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Reset password",
+      "message": "Forgot my password.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Reset password",
+      "message": "Reset link expired.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PASSWORD",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "resetPassword",
+      "kbArticle": "KB-PASSWORD-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund request",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund pending",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund request",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund pending",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund pending",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund request",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund request",
+      "message": "Returned product waiting refund.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Refund pending",
+      "message": "Refund not received.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "REFUND",
+      "priority": "MEDIUM",
+      "sentiment": "NEUTRAL",
+      "tool": "issueRefund",
+      "kbArticle": "KB-REFUND-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Order delayed",
+      "message": "Where is my order?",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Track order",
+      "message": "Where is my order?",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Track order",
+      "message": "Tracking not updated.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Track order",
+      "message": "Where is my order?",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Track order",
+      "message": "Where is my order?",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ORDER",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "getOrderStatus",
+      "kbArticle": "KB-ORDER-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Update account",
+      "message": "Need to change phone number.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Update account",
+      "message": "Please update my email.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Update account",
+      "message": "Need to change phone number.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Update account",
+      "message": "Please update my email.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Change email",
+      "message": "Need to change phone number.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Change email",
+      "message": "Need to change phone number.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "ACCOUNT",
+      "priority": "LOW",
+      "sentiment": "NEUTRAL",
+      "tool": "updateAccount",
+      "kbArticle": "KB-ACCOUNT-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "App crash",
+      "message": "Application crashes.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Website error",
+      "message": "Application crashes.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "App crash",
+      "message": "Dashboard not loading.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Website error",
+      "message": "Application crashes.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "TECHNICAL",
+      "priority": "HIGH",
+      "sentiment": "NEGATIVE",
+      "tool": "createSupportCase",
+      "kbArticle": "KB-TECH-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Random text",
+      "message": "Payment failed and login issue.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-1",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Random text",
+      "message": "asdfgh payment????",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-2",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  },
+  {
+    "input": {
+      "subject": "Random text",
+      "message": "Payment failed and login issue.",
+      "attachments": []
+    },
+    "expected": {
+      "category": "PAYMENT",
+      "priority": "CRITICAL",
+      "sentiment": "NEGATIVE",
+      "tool": "getPaymentStatus",
+      "kbArticle": "KB-MISC-3",
+      "replyKeywords": [
+        "support",
+        "status",
+        "help"
+      ]
+    }
+  }
+]

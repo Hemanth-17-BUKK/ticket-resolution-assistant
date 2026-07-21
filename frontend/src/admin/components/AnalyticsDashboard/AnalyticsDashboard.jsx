@@ -21,16 +21,14 @@ function AnalyticsDashboard({
 
                     <div className="analytics-card-header">
 
-                        <h2>AI Accuracy</h2>
+                        <h2>AI CONFIDENCE</h2>
 
                     </div>
 
                     <div className="analytics-card-body">
 
                         <AIAccuracyChart
-
-                            stats={stats}
-
+                            tickets={tickets}
                         />
 
                     </div>
